@@ -63,7 +63,7 @@ export default function Home() {
         <label className="flex flex-col gap-1">
           <p>Skills (optional)</p>
           <input
-            placeholder="Job Required Skills, comma separated(e.g React.JS, JavaScript, CSS)"
+            placeholder="Job Required Skills"
             className="px-3 py-2 border-2 border-gray-500 rounded-lg"
             value={values.skills}
             onChange={(e) => handleUpdateValue("skills", e.target.value)}
