@@ -2,6 +2,12 @@ import { API } from "@/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "1mb",
+    },
+  },
+  // Specifies the maximum allowed duration for this function to execute (in seconds)
   maxDuration: 5,
 };
 
