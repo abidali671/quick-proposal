@@ -1,9 +1,11 @@
 "use client";
+import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
-import { EventHandler, FormEventHandler, useState } from "react";
+import { FormEventHandler, useState } from "react";
 
 export default function Home() {
-  const [data, setData] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<string>("");
   const [values, setValues] = useState({
     title: "",
     description: "",
@@ -16,6 +18,7 @@ export default function Home() {
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
+      setLoading(true);
       event.preventDefault();
       const response = await clientAPI.post("/prompt", values);
 
@@ -23,6 +26,8 @@ export default function Home() {
       console.log("client response: ", response.data);
     } catch (error) {
       console.log("client error: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +73,7 @@ export default function Home() {
           type="submit"
           className="w-full h-10 bg-gray-600 rounded-xl text-gray-50"
         >
-          Send
+          {loading ? <Spinner /> : "Generate Proposal"}
         </button>
       </form>
       <div className="h-full bg-gray-50 w-full flex flex-col gap-4 border border-gray-200 p-5 rounded-xl shadow-sm relative">
@@ -81,7 +86,7 @@ export default function Home() {
             Copy
           </button>
         )}
-        <textarea value={data} />
+        <textarea className="h-full" value={data} />
       </div>
     </div>
   );
