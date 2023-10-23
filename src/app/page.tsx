@@ -3,6 +3,8 @@ import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
 import { FormEventHandler, useState } from "react";
 
+export const maxDuration = 5;
+
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<string>("");
