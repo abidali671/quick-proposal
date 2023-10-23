@@ -1,7 +1,7 @@
 import { API } from "@/utils";
 import { NextRequest, NextResponse } from "next/server";
 
-export const maxDuration = 5;
+export const maxDuration = 30;
 
 export async function POST(request: NextRequest) {
   try {
