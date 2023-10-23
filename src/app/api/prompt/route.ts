@@ -1,8 +1,6 @@
 import { API } from "@/utils";
 import { NextRequest, NextResponse } from "next/server";
 
-export const maxDuration = 30;
-
 export async function POST(request: NextRequest) {
   try {
     const payload = await request.json();
