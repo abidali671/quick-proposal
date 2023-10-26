@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
     const response = await API.openAI.post("/chat/completions", {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
+      n: 3,
     });
 
     return NextResponse.json(response.data);
