@@ -1,29 +1,31 @@
 "use client";
 import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
-import { FormEventHandler, useState } from "react";
+import { ChangeEvent, FormEventHandler, useState } from "react";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<string>("");
+  const [copied, setCopied] = useState(false);
+  const [data, setData] = useState<string[]>([]);
+  const [originalData, setOriginalData] = useState<string[]>([]);
+  const [selectedData, setSelectedData] = useState(0);
   const [values, setValues] = useState({
     title: "",
     description: "",
     skills: "",
   });
 
-  const handleUpdateValue = (key: string, value: string) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
-  };
-
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
       setLoading(true);
       event.preventDefault();
       const response = await clientAPI.post("/prompt", values);
+      const contentList = response.data.choices.map(
+        (value: any) => value.message.content
+      );
 
-      setData(response.data.choices[0].message.content);
-      console.log("client response: ", response.data);
+      setData(contentList);
+      setOriginalData(contentList);
     } catch (error) {
       console.log("client error: ", error);
     } finally {
@@ -31,62 +33,144 @@ export default function Home() {
     }
   };
 
-  const handleCopyContent = () => navigator.clipboard.writeText(data);
+  const handleUpdateValue = (key: string, value: string) => {
+    setValues((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleCopyContent = () => {
+    navigator.clipboard.writeText(data[selectedData]);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
+
+  const handleResetContent = () => {
+    setData((prev) =>
+      prev.map((val, index) =>
+        index === selectedData ? originalData[selectedData] : val
+      )
+    );
+  };
+
+  const handleChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setData((prev) =>
+      prev.map((val, index) =>
+        index === selectedData ? event.target.value : val
+      )
+    );
+  };
+
+  const handleChangeData = (index: number) => {
+    setSelectedData(index);
+  };
 
   return (
-    <div className="w-full items-center grid grid-cols-2 gap-5 p-5">
-      <form
-        onSubmit={handleSend}
-        className=" bg-gray-50 w-full flex flex-col gap-4 border border-gray-200 p-5 rounded-xl shadow-sm"
-      >
-        <label className="flex flex-col gap-1">
-          <p>Job Title</p>
-          <input
-            required
-            placeholder="Job Title"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
-            value={values.title}
-            onChange={(e) => handleUpdateValue("title", e.target.value)}
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <p>Job Description</p>
-          <textarea
-            required
-            placeholder="Job Description"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
-            rows={15}
-            value={values.description}
-            onChange={(e) => handleUpdateValue("description", e.target.value)}
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <p>Skills (optional)</p>
-          <input
-            placeholder="Job Required Skills"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
-            value={values.skills}
-            onChange={(e) => handleUpdateValue("skills", e.target.value)}
-          />
-        </label>
-        <button
-          type="submit"
-          className="w-full h-10 bg-gray-600 rounded-xl text-gray-50"
+    <div className="grid grid-rows-[64px_1fr] h-screen w-full">
+      <div className="bg-gray-600 flex items-center justify-between px-5">
+        <p className="font-semibold text-white text-lg">Quick Proposal</p>
+        <div className="flex items-center gap-4">
+          <p className="text-sm text-white">
+            Available Credits: <b>1</b>
+          </p>
+          <div className="w-10 h-10 rounded-full bg-white" />
+        </div>
+      </div>
+      <div className="w-full items-center grid grid-cols-[400px_1fr]">
+        <form
+          onSubmit={handleSend}
+          className=" bg-white w-full h-full flex flex-col gap-4 border-r border-gray-200 p-5 shadow-sm"
         >
-          {loading ? <Spinner /> : "Generate Proposal"}
-        </button>
-      </form>
-      <div className="h-full bg-gray-50 w-full flex flex-col gap-4 border border-gray-200 p-5 rounded-xl shadow-sm relative">
-        {data && (
+          <label className="flex flex-col gap-1">
+            <p>Job Title</p>
+            <input
+              required
+              placeholder="Job Title"
+              className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+              value={values.title}
+              onChange={(e) => handleUpdateValue("title", e.target.value)}
+            />
+          </label>
+          <label className="flex flex-col gap-1">
+            <p>Job Description</p>
+            <textarea
+              required
+              placeholder="Job Description"
+              className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+              rows={15}
+              value={values.description}
+              onChange={(e) => handleUpdateValue("description", e.target.value)}
+            />
+          </label>
+          <label className="flex flex-col gap-1">
+            <p>Skills</p>
+            <input
+              placeholder="Job Required Skills"
+              className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+              value={values.skills}
+              onChange={(e) => handleUpdateValue("skills", e.target.value)}
+            />
+          </label>
           <button
             type="submit"
-            className="text-xs px-3 py-1 absolute right-4 -top-3 bg-gray-600 rounded text-gray-50"
-            onClick={handleCopyContent}
+            className="w-full h-10 bg-gray-600 rounded-xl text-gray-50"
           >
-            Copy
+            {loading ? <Spinner /> : "Generate Proposal"}
           </button>
-        )}
-        <textarea className="h-full" value={data} />
+        </form>
+        <div className="h-full bg-white w-full flex flex-col gap-2 p-5 relative">
+          <div className="flex h-10 items-center justify-between">
+            {data.length > 0 && (
+              <>
+                <div className="flex gap-2">
+                  <button
+                    disabled={selectedData === 0}
+                    onClick={() => handleChangeData(selectedData - 1)}
+                    className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 bg-gray-600 disabled:bg-gray-300`}
+                  >
+                    Prev
+                  </button>
+                  <button
+                    disabled={selectedData === data.length - 1}
+                    onClick={() => handleChangeData(selectedData + 1)}
+                    className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 bg-gray-600 disabled:bg-gray-300`}
+                  >
+                    Next
+                  </button>
+                </div>
+                <p className="text-xs">
+                  {selectedData + 1} / {data.length}
+                </p>
+                <div className="flex items-center gap-2">
+                  {data[selectedData] !== originalData[selectedData] && (
+                    <button
+                      type="submit"
+                      className={`text-xs px-3 py-1 rounded text-gray-50 duration-300 bg-gray-600`}
+                      onClick={handleResetContent}
+                    >
+                      Reset Changes
+                    </button>
+                  )}
+                  <button
+                    type="submit"
+                    className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 ${
+                      copied ? "bg-yellow-500" : "bg-gray-600"
+                    }`}
+                    onClick={handleCopyContent}
+                  >
+                    {copied ? "Copied" : "Copy"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+          <textarea
+            disabled={!data.length}
+            className="h-full resize-none outline-none"
+            value={data[selectedData]}
+            onChange={handleChangeContent}
+          />
+        </div>
       </div>
     </div>
   );
