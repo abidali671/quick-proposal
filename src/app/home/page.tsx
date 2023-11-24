@@ -69,8 +69,8 @@ const Home = () => {
       <div className="py-32  wrapper">
         <h6 className="font-bold text-green-light">STRUCTURE</h6>
 
-        <div className="flex  py-4 justify-between flex-col md:flex-row gap-y-10">
-          <div className="flex flex-col gap-4 basis-6/12">
+        <div className="main-discover">
+          <div className="discover-left">
             <h3 className="text-5xl font-bold leading-tight">
               Discover all
               <span className="text-orange-light"> our features</span>
@@ -118,7 +118,7 @@ const Home = () => {
         </div>
 
         <div className="flex pt-32 md:flex-nowrap flex-wrap gap-4">
-          <div className="flex flex-col gap-2  basis-full md:basis-4/12 bg-gray-50 p-10">
+          <div className="discover-card ">
             <h6 className="font-bold text-green-light">STRATEGY</h6>
             <h3 className="font-bold text-2xl">Build your experience</h3>
             <p>
@@ -143,7 +143,7 @@ const Home = () => {
               </svg>
             </button>
           </div>
-          <div className="flex flex-col gap-2 basis-full  md:basis-4/12 bg-gray-50 p-10">
+          <div className="discover-card ">
             <h6 className="font-bold text-green-light">ABOUT US</h6>
             <h3 className="font-bold text-2xl">Working process</h3>
             <p>
@@ -168,7 +168,7 @@ const Home = () => {
               </svg>
             </button>
           </div>
-          <div className="flex flex-col gap-2  basis-full md:basis-4/12 bg-gray-50 p-10">
+          <div className="discover-card ">
             <h6 className="font-bold text-green-light">DASHBOARD</h6>
             <h3 className="font-bold text-2xl">Product features</h3>
             <p>
