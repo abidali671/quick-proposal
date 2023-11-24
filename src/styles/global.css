@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,10 +11,31 @@
     /* overflow: hidden */
 }
 
-.warpper {
-    @apply max-w-6xl px-7 w-full flex h-full flex-col justify-between mx-auto
+@layer components {
+    .primary-btn {
+        @apply bg-orange-light_hover text-white px-4 py-2 border-none rounded-md font-normal cursor-pointer
+    }
+
+    .action-btn {
+        @apply flex py-1.5 w-[130px] border-orange-light_hover border-b-[1px] gap-2 text-orange-light_hover items-center font-raleway font-semibold
+    }
 }
 
+@layer base {
+
+    h5,
+    h3,
+    h1,
+    p {
+        @apply text-gray-text_dark font-raleway;
+    }
+}
+
+.wrapper {
+    @apply max-w-6xl px-7 w-full flex flex-col justify-between mx-auto
+}
+
+/* hero section */
 .hero-nav {
     @apply flex items-center justify-between h-20;
 }
@@ -32,11 +55,11 @@
 
 .hero-overlay {
 
-    @apply absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-5 -z-10
+    @apply absolute top-0 left-0 bg-cover bg-center bg-no-repeat opacity-5 -z-10
 }
 
 .main-hero {
-    @apply flex items-center flex-wrap h-full justify-between w-full
+    @apply flex items-center flex-wrap justify-between
 }
 
 .hero-left {
@@ -47,8 +70,9 @@
     @apply flex basis-full md:basis-6/12
 }
 
-@layer components {
-    .primary-btn {
-        @apply bg-orange-light_hover text-white px-4 py-2 border-none rounded-md font-normal cursor-pointer
-    }
-}
+/* hero section */
+
+/* discover feature */
+
+
+/* discover feature */
