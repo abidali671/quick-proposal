@@ -17,6 +17,8 @@ const config: Config = {
       colors: {
         gray: {
           dark: "#10393B",
+          text_light: '#03363d',
+          text_dark: '#0b363d',
         },
         green: {
           light: "#68B06E",
@@ -26,6 +28,9 @@ const config: Config = {
           light_hover: '#ff8a43',
           dark: "#FF8945",
         },
+      },
+      fontFamily: {
+        raleway: ["Raleway", "sans-serif"],
       },
     },
 
