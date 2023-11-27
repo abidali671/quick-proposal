@@ -13,7 +13,7 @@
 
 @layer components {
     .primary-btn {
-        @apply bg-orange-light_hover text-white px-4 py-2 border-none rounded-md font-normal cursor-pointer
+        @apply bg-orange-light_hover text-white w-32 py-2 border-none rounded-md font-normal cursor-pointer
     }
 
     .action-btn {
@@ -36,16 +36,20 @@
 }
 
 .wrapper {
-    @apply max-w-6xl px-7 w-full flex flex-col justify-between mx-auto
+    @apply max-w-7xl px-7 w-full flex flex-col justify-between mx-auto
 }
 
 /* hero section */
 .hero-nav {
-    @apply flex items-center justify-between h-20;
+    @apply fixed top-0 w-full z-10;
+}
+
+.nav-container{
+    @apply h-20 max-w-7xl mx-auto px-10 flex items-center justify-between 
 }
 
 .hero-ul {
-    @apply flex gap-10 items-center text-white
+    @apply flex gap-10 items-center    
 }
 
 
@@ -63,7 +67,7 @@
 }
 
 .main-hero {
-    @apply flex items-center flex-wrap justify-between
+    @apply flex items-center flex-wrap justify-between py-20
 }
 
 .hero-left {
