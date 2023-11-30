@@ -32,6 +32,9 @@ const config: Config = {
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
       },
+      boxShadow: {
+        '2xl': '0 6px 50px -10px rgb(0 0 0 / 0.25)',
+      }
     },
 
   },

@@ -21,7 +21,10 @@
     }
 
     .discover-card {
-        @apply flex flex-col gap-2 basis-full md:basis-4/12 bg-gray-50 p-10
+        @apply flex flex-col gap-2 basis-full md:basis-4/12 bg-gray-50 p-10 flex-wrap
+    }
+    .pricing-card{
+        @apply shadow-2xl border-[#E6E6E6] p-10 basis-4/12 flex  flex-col bg-gray-100
     }
 }
 
@@ -41,7 +44,7 @@
 
 /* hero section */
 .hero-nav {
-    @apply fixed top-0 w-full z-10;
+    @apply fixed top-0 w-full z-10 ;
 }
 
 .nav-container{
@@ -91,3 +94,14 @@
 }
 
 /* discover feature */
+
+/* pricing section */
+.pricing-list{ 
+    @apply flex flex-col gap-2 list-none 
+}
+.pricing-list li{
+    @apply relative flex items-center  gap-3
+}
+.pricing-list li::before {
+        content: '\2022';        
+}
