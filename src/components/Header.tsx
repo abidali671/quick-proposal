@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
   const [stickyClass, setStickyClass] = useState("dark");
@@ -35,11 +36,17 @@ const Header = () => {
           }
         />
         <ul className={`hero-ul`}>
-          <li>Home</li>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
           <li>Pricing</li>
           <li>Contact</li>
           <li>
-            <button className="primary-btn hidden md:block">Get Started</button>
+            <Link href="/app">
+              <button className="primary-btn hidden md:block">
+                Get Started
+              </button>
+            </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
