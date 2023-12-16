@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [stickyClass, setStickyClass] = useState("");
+  const [stickyClass, setStickyClass] = useState("dark");
 
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
@@ -17,11 +17,10 @@ const Header = () => {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 500
-        ? setStickyClass("bg-white shadow-md")
-        : setStickyClass("bg-gray-dark");
+      windowHeight > 500 ? setStickyClass("light") : setStickyClass("dark");
     }
   };
+
   return (
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
@@ -35,14 +34,9 @@ const Header = () => {
               : "https://n.foxdsgn.com/twilo/wp-content/uploads/2020/10/Group-52-1.png"
           }
         />
-        <ul
-          className={`${!stickyClass ? "text-white " : "text-black "} hero-ul`}
-        >
+        <ul className={`hero-ul`}>
           <li>Home</li>
-          <li>Pages</li>
-          <li>Portfolio</li>
-          <li>Blog</li>
-          <li>Shop</li>
+          <li>Pricing</li>
           <li>Contact</li>
           <li>
             <button className="primary-btn hidden md:block">Get Started</button>

@@ -1,0 +1,50 @@
+.hero-nav {
+  @apply sticky top-0 w-full z-10;
+}
+
+.hero-nav.light {
+  @apply bg-white shadow-md;
+}
+
+.hero-nav.dark {
+  @apply bg-gray-dark;
+}
+
+.nav-container {
+  @apply h-20 max-w-7xl mx-auto px-10 flex items-center justify-between;
+}
+
+.hero-nav.dark .hero-ul {
+  @apply text-white;
+}
+
+.hero-nav.light .hero-ul {
+  @apply text-black;
+}
+.hero-ul {
+  @apply flex gap-10 items-center;
+}
+
+.hero-ul li:not(:last-child) {
+  @apply md:block hidden;
+}
+
+.hero-ul li:hover {
+  @apply cursor-pointer;
+}
+
+.hero-overlay {
+  @apply absolute top-0 left-0 bg-cover bg-center bg-no-repeat opacity-5 -z-10;
+}
+
+.main-hero {
+  @apply flex items-center flex-wrap justify-between py-20;
+}
+
+.hero-left {
+  @apply flex gap-3 flex-col basis-full md:basis-6/12 text-white;
+}
+
+.hero-right {
+  @apply flex basis-full md:basis-6/12;
+}
