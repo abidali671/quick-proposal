@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0px;
+    margin: 0%;
+    box-sizing: border-box;
+    /* overflow: hidden */
+}
+
+@layer components {
+    .primary-btn {
+        @apply bg-orange-light_hover text-white w-32 py-2 border-none rounded-md font-normal cursor-pointer
+    }
+
+    .action-btn {
+        @apply flex py-1.5 w-[130px] border-orange-light_hover border-b-[1px] gap-2 text-orange-light_hover items-center font-raleway font-semibold
+    }
+
+    .discover-card {
+        @apply flex flex-col gap-2 basis-full md:basis-4/12 bg-gray-50 p-10 flex-wrap
+    }
+    .pricing-card{
+        @apply shadow-2xl border-[#E6E6E6] p-10 basis-4/12 flex  flex-col bg-gray-100
+    }
+}
+
+@layer base {
+
+    h5,
+    h3,
+    h1,
+    p {
+        @apply text-gray-text_dark font-raleway;
+    }
+}
+
+.wrapper {
+    @apply max-w-7xl px-7 w-full flex flex-col justify-between mx-auto
+}
+
+/* hero section */
+.hero-nav {
+    @apply fixed top-0 w-full z-10 ;
+}
+
+.nav-container{
+    @apply h-20 max-w-7xl mx-auto px-10 flex items-center justify-between 
+}
+
+.hero-ul {
+    @apply flex gap-10 items-center    
+}
+
+
+.hero-ul li:not(:last-child) {
+    @apply md:block hidden
+}
+
+.hero-ul li:hover {
+    @apply cursor-pointer
+}
+
+.hero-overlay {
+
+    @apply absolute top-0 left-0 bg-cover bg-center bg-no-repeat opacity-5 -z-10
+}
+
+.main-hero {
+    @apply flex items-center flex-wrap justify-between py-20
+}
+
+.hero-left {
+    @apply flex gap-3 flex-col basis-full md:basis-6/12 text-white
+}
+
+.hero-right {
+    @apply flex basis-full md:basis-6/12
+}
+
+/* hero section */
+
+/* discover feature */
+
+.main-discover {
+    @apply flex py-4 justify-between flex-col md:flex-row gap-y-10
+}
+
+.discover-left {
+    @apply flex flex-col gap-4 basis-6/12
+}
+
+/* discover feature */
+
+/* pricing section */
+.pricing-list{ 
+    @apply flex flex-col gap-2 list-none 
+}
+.pricing-list li{
+    @apply relative flex items-center  gap-3
+}
+.pricing-list li::before {
+        content: '\2022';        
+}
