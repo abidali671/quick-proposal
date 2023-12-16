@@ -2,13 +2,48 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import "../../styles/global.css";
-import Header from "@/components/Header";
 
 const Home = () => {
-
   return (
     <div>
+      <div className="bg-gray-dark relative">
+        <div
+          className="hero-overlay"
+          style={{
+            backgroundImage:
+              "url('https://n.foxdsgn.com/twilo/wp-content/uploads/2022/04/Group-49.png')",
+          }}
+        ></div>
+        <div className="wrapper">
+          <div className="main-hero">
+            <div className="hero-left">
+              <h1 className="text-5xl font-bold leading-[60px] text-white">
+                Craft Compelling Proposals in{" "}
+                <span className="text-orange-light">
+                  Minutes with Quick Proposal
+                </span>
+              </h1>
+              <p className="text-[#618A88]">
+                Quick Proposal is an AI-powered writing tool that helps you
+                create winning Upwork and freelance job proposals in no time.
+              </p>
+
+              <div className="pt-5">
+                <button className="primary-btn">Get Started</button>
+              </div>
+            </div>
+            <div className="hero-right">
+              <Image
+                src="https://n.foxdsgn.com/twilo/wp-content/uploads/2022/08/Group-2325-2-768x711.png"
+                alt="work-image"
+                width="1000"
+                className="w-full  object-contain"
+                height="1000"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Discover features start */}
       <div className="py-32  wrapper">
         <h6 className="font-bold text-green-light">STRUCTURE</h6>
@@ -193,7 +228,9 @@ const Home = () => {
             </div>
             <div className="pricing-card">
               <div className="pt-10 flex flex-col gap-4">
-                <h6 className="text-green-light font-bold text-2xl">Enterprise</h6>
+                <h6 className="text-green-light font-bold text-2xl">
+                  Enterprise
+                </h6>
                 <p>For small team just getting started.</p>
               </div>
 

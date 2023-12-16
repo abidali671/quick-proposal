@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "./globals.css";
 import Header from "@/components/Header";
+
+import "../styles/global.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,11 +16,10 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: any) {
   return (
     <html lang="en">
-     
-      <body className={inter.className}>
-        
-      <Header />
-        {children}</body>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
+        <Header />
+        <div className="flex-1 grid">{children}</div>
+      </body>
     </html>
   );
 }
