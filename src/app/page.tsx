@@ -96,7 +96,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex pt-32 md:flex-nowrap flex-wrap gap-4">
+        <div className="flex pt-32  lg:flex-nowrap  flex-wrap gap-4">
           <div className="discover-card ">
             <h6 className="font-bold text-green-light">STRATEGY</h6>
             <h3 className="font-bold text-2xl">Build your experience</h3>
