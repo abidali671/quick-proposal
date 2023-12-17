@@ -17,15 +17,15 @@ const config: Config = {
       colors: {
         gray: {
           dark: "#10393B",
-          text_light: '#03363d',
-          text_dark: '#0b363d',
+          text_light: "#03363d",
+          text_dark: "#0b363d",
         },
         green: {
           light: "#68B06E",
         },
         orange: {
           light: "#F4722C",
-          light_hover: '#ff8a43',
+          light_hover: "#ff6347",
           dark: "#FF8945",
         },
       },
@@ -33,10 +33,9 @@ const config: Config = {
         raleway: ["Raleway", "sans-serif"],
       },
       boxShadow: {
-        '2xl': '0 6px 50px -10px rgb(0 0 0 / 0.25)',
-      }
+        "2xl": "0 6px 50px -10px rgb(0 0 0 / 0.25)",
+      },
     },
-
   },
   plugins: [],
 };
