@@ -15,11 +15,11 @@
 
 @layer components {
   .primary-btn {
-    @apply bg-orange-light_hover text-white w-32 py-2 border-none rounded-md font-normal cursor-pointer;
+    @apply bg-orange-light text-white w-32 py-2 border-none rounded-md font-normal cursor-pointer;
   }
 
   .action-btn {
-    @apply flex py-1.5 w-[130px] border-orange-light_hover border-b-[1px] gap-2 text-orange-light_hover items-center font-raleway font-semibold;
+    @apply flex py-1.5 w-[130px] border-orange-light border-b-[1px] gap-2 text-orange-light items-center font-raleway font-semibold;
   }
 
   .discover-card {
@@ -32,7 +32,6 @@
 }
 
 @layer base {
-
   h5,
   h3,
   h1,
