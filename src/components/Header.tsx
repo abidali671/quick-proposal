@@ -31,14 +31,6 @@ const Header = () => {
   return (
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
-        {/* <Image
-          alt="logo"
-          width={110}
-          height={110}
-          src={
-            Logo
-          }
-        /> */}
         <Logo />
         <ul className={`hero-ul`}>
           <li>

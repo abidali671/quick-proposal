@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="grid grid-rows-[auto_1fr] h-screen w-full">
           <Header />
-          <div className="relative flex items-center p-20">
+          <div className="relative flex items-center p-5 md:p-20 max-md:justify-center">
             <img
               className="left-0 top-0 absolute h-full w-full object-cover grayscale"
               src={Background.src}
