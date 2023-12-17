@@ -24,7 +24,7 @@ const config: Config = {
           light: "#68B06E",
         },
         orange: {
-          light: "#F4722C",
+          light: "#ff6347",
           light_hover: "#ff6347",
           dark: "#FF8945",
         },
