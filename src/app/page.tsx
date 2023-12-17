@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Home = () => {
   return (
@@ -17,8 +17,8 @@ const Home = () => {
         <div className="wrapper">
           <div className="main-hero">
             <div className="hero-left">
-              <h1 className="text-5xl font-bold leading-[60px] text-white">
-                Craft Compelling Proposals in{" "}
+              <h1 className="text-4xl md:text-5xl font-bold leading-snug md:leading-[60px] text-white">
+                Craft Compelling Proposals in
                 <span className="text-orange-light">
                   Minutes with Quick Proposal
                 </span>
@@ -96,7 +96,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex pt-32 md:flex-nowrap flex-wrap gap-4">
+        <div className="flex pt-32  lg:flex-nowrap  flex-wrap gap-4">
           <div className="discover-card ">
             <h6 className="font-bold text-green-light">STRATEGY</h6>
             <h3 className="font-bold text-2xl">Build your experience</h3>

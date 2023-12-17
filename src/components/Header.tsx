@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/assets/icon";
 
 const Header = () => {
   const [stickyClass, setStickyClass] = useState("dark");
@@ -22,19 +24,22 @@ const Header = () => {
     }
   };
 
+  const handleSidebar = () => {
+    console.log("handle sidebar===");
+  };
+
   return (
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
-        <Image
+        {/* <Image
           alt="logo"
           width={110}
           height={110}
           src={
-            stickyClass
-              ? "https://n.foxdsgn.com/twilo/wp-content/uploads/2020/10/Group-113258899.png"
-              : "https://n.foxdsgn.com/twilo/wp-content/uploads/2020/10/Group-52-1.png"
+            Logo
           }
-        />
+        /> */}
+        <Logo />
         <ul className={`hero-ul`}>
           <li>
             <Link href="/">Home</Link>
@@ -47,20 +52,23 @@ const Header = () => {
                 Get Started
               </button>
             </Link>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-9 h-9 block md:hidden"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
-              />
-            </svg>
+
+            <div onClick={handleSidebar}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-9 h-9 block md:hidden"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
+                />
+              </svg>
+            </div>
           </li>
         </ul>
       </div>
