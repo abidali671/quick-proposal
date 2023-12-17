@@ -1,18 +1,10 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 
-interface InputProps {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({
-  onChange,
-  value,
-  label,
-  placeholder,
-}) => {
+const Input: React.FC<InputProps> = ({ label, placeholder, ...rest }) => {
   return (
     <label className="flex flex-col gap-1">
       <p className="text-sm font-semibold">{label}</p>
@@ -20,8 +12,7 @@ const Input: React.FC<InputProps> = ({
         required
         placeholder={placeholder ?? label}
         className="px-3 py-2 border-2 border-gray-500 rounded-lg"
-        value={value}
-        onChange={onChange}
+        {...rest}
       />
     </label>
   );
