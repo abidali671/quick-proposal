@@ -1,36 +1,16 @@
 "use client";
-
-import Image from "next/image";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Logo } from "@/assets/icon";
+import { LogoDark, LogoLight } from "@/assets/icon";
 import { Sidebar } from "./Sidebar";
+import useHeader from "@/hooks/useHeader";
 
 const Header = () => {
-  const [stickyClass, setStickyClass] = useState("dark");
-
-  useEffect(() => {
-    window.addEventListener("scroll", stickNavbar);
-
-    return () => {
-      window.removeEventListener("scroll", stickNavbar);
-    };
-  }, []);
-
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 500 ? setStickyClass("light") : setStickyClass("dark");
-    }
-  };
-
-  const handleSidebar = () => {};
+  const { stickyClass, isOpen, handleSidebar } = useHeader();
 
   return (
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
-        <Logo />
+        {stickyClass == "dark" ? <LogoDark /> : <LogoLight />}
         <ul className={`hero-ul relative`}>
           <li>
             <Link href="/">Home</Link>
@@ -44,8 +24,10 @@ const Header = () => {
               </button>
             </Link>
           </li>
-          <Sidebar />
         </ul>
+        <div className={`md:hidden block side-menu ${stickyClass}`}>
+          <Sidebar handleSidebar={handleSidebar} isOpen={isOpen} />
+        </div>
       </div>
     </nav>
   );
