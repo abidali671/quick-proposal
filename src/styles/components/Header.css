@@ -10,6 +10,14 @@
   @apply bg-gray-dark;
 }
 
+.side-menu.light {
+  @apply text-black;
+}
+
+.side-menu.dark {
+  @apply text-white;
+}
+
 .nav-container {
   @apply h-16 md:h-20 max-w-7xl mx-auto px-10 flex items-center justify-between;
 }
