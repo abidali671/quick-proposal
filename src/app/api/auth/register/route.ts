@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      throw { email: "Email already exists" };
+      throw { email: "Email already registered" };
     }
 
     const token = optGenerator.generate(12, {
