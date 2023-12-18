@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       { abortEarly: false, strict: true }
     );
 
-    await connectMongoDB();
+    // await connectMongoDB();
 
     // const existingUser = await User.findOne({ email });
 
