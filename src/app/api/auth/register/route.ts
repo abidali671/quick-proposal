@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     await RegisterMail({ id: user._id, email, name, token });
 
     return NextResponse.json(
-      { msg: `Verification mail sent to ${email}.` },
+      { msg: `Verification mail sent to: ${email}` },
       { status: 201 }
     );
   } catch (error) {
