@@ -45,7 +45,7 @@ function Login() {
         </div>
         <Button label="Continue" type="submit" />
         <p className="text-white text-sm mt-2">
-          <span className="font-medium">Don't have an account?</span>{" "}
+          <span className="font-medium">Don&apos;t have an account?</span>{" "}
           <Link className="text-gray-400" href="/register">
             Register
           </Link>
