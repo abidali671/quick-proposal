@@ -24,9 +24,7 @@ const Header = () => {
     }
   };
 
-  const handleSidebar = () => {
-    console.log("handle sidebar===");
-  };
+  const handleSidebar = () => {};
 
   return (
     <nav className={`hero-nav ${stickyClass}`}>
