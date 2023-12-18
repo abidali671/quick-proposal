@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 import { Inter } from "next/font/google";
 
 import Header from "@/components/Header";
+import "react-toastify/dist/ReactToastify.css";
 
 import "../styles/global.css";
 
@@ -19,6 +21,15 @@ export default async function RootLayout({ children }: any) {
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Header />
         <div className="flex-1 grid">{children}</div>
+        <ToastContainer
+          autoClose={5000}
+          position="top-center"
+          theme="dark"
+          pauseOnHover
+          closeOnClick
+          draggable
+          closeButton={false}
+        />
       </body>
     </html>
   );
