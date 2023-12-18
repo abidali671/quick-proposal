@@ -1,15 +1,17 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { toast } from "react-toastify";
 import { useFormik } from "formik";
+
+import AuthLayout from "@/components/AuthLayout";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+
 import { clientAPI } from "@/utils/api";
-import Link from "next/link";
 
 import "./style.css";
-import AuthLayout from "@/components/AuthLayout";
-import { toast } from "react-toastify";
 
 function Register() {
   const { values, errors, setFieldValue, handleSubmit, isSubmitting } =
