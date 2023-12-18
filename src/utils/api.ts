@@ -1,8 +1,8 @@
 import Axios from "axios";
+import config from "./config";
 
 export const clientAPI = Axios.create({
-  // baseURL: "https://main.d1cy3q0nrgb450.amplifyapp.com/api",
-  baseURL: "http://localhost:3000/api",
+  baseURL: config.clientBaseUrl + "/api",
   headers: {
     Authorization: "Bearer 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",
   },
