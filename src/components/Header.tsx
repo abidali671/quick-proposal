@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "@/assets/icon";
+import { Sidebar } from "./Sidebar";
 
 const Header = () => {
   const [stickyClass, setStickyClass] = useState("dark");
@@ -30,7 +31,7 @@ const Header = () => {
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
         <Logo />
-        <ul className={`hero-ul`}>
+        <ul className={`hero-ul relative`}>
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -42,24 +43,8 @@ const Header = () => {
                 Get Started
               </button>
             </Link>
-
-            <div onClick={handleSidebar}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-9 h-9 block md:hidden"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"
-                />
-              </svg>
-            </div>
           </li>
+          <Sidebar />
         </ul>
       </div>
     </nav>

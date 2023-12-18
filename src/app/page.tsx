@@ -18,7 +18,7 @@ const Home = () => {
           <div className="main-hero">
             <div className="hero-left">
               <h1 className="text-4xl md:text-5xl font-bold leading-snug md:leading-[60px] text-white">
-                Craft Compelling Proposals in
+                Craft Compelling Proposals in {""}
                 <span className="text-orange-light">
                   Minutes with Quick Proposal
                 </span>

@@ -6,10 +6,9 @@ export const Sidebar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsOpen(window.innerWidth <= 768);
+      setIsOpen(window.innerWidth <= 786 ? false : isOpen);
     };
 
-    // Initial calculation
     handleResize();
 
     window.addEventListener("resize", handleResize);
@@ -25,15 +24,15 @@ export const Sidebar = () => {
   return (
     <>
       {/* overlay */}
-      {isOpen && (
-        <div
-          className={`w-8/12 h-screen bg-white fixed top-0 right-0 transition-transform duration-300 z-20 ${
-            isOpen ? "translate-x-0" : " translate-x-full"
-          }`}
-        >
-          {/* Your Sidebar Content */}
-        </div>
-      )}
+
+      <div
+        className={`w-8/12 h-screen bg-white fixed top-0 right-0 transition-transform duration-300 z-20 ${
+          isOpen ? "translate-x-0" : " translate-x-full"
+        }`}
+      >
+        {/* Your Sidebar Content */}
+      </div>
+
       {isOpen && (
         <div
           onClick={handleSidebar}
