@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     //   verified: false,
     // });
 
-    await RegisterMail({ id: "user._id", email, name, token });
+    // await RegisterMail({ id: "user._id", email, name, token });
 
     return NextResponse.json(
       { msg: `Verification mail sent to: ${email}` },
