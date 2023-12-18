@@ -8,7 +8,6 @@ const ErrorHandler = (error: any) => {
     };
   } else if (error.name === "ValidationError") {
     if (error.inner) {
-      console.log("error: ", error);
       // for yup schema errors
       error.inner.forEach(
         (error: any) =>
