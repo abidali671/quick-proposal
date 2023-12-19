@@ -13,12 +13,10 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, password } = await request.json();
 
-    if (mongoose.connection.readyState) {
-      return NextResponse.json(
-        { msg: mongoose.connection.readyState },
-        { status: 201 }
-      );
-    }
+    return NextResponse.json(
+      { msg: mongoose?.connection?.readyState },
+      { status: 201 }
+    );
 
     await RegisterSchema.validate(
       { name, email, password },
