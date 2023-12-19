@@ -7,50 +7,47 @@ import { RegisterSchema } from "@/schema/auth";
 import { ErrorHandler } from "@/utils";
 import config from "@/utils/config";
 import User from "@/models/user";
-import mongoose from "mongoose";
 import connectMongoDB from "@/utils/mongodb";
+
+connectMongoDB();
 
 export async function POST(request: NextRequest) {
   try {
     const { name, email, password } = await request.json();
 
-    await connectMongoDB();
+    await RegisterSchema.validate(
+      { name, email, password },
+      { abortEarly: false, strict: true }
+    );
 
-    return NextResponse.json({ msg: "Connected to DB" }, { status: 201 });
+    const existingUser = await User.findOne({ email });
 
-    // await RegisterSchema.validate(
-    //   { name, email, password },
-    //   { abortEarly: false, strict: true }
-    // );
+    if (existingUser) {
+      throw { email: "Email already registered" };
+    }
 
-    // const existingUser = await User.findOne({ email });
+    const token = optGenerator.generate(12, {
+      upperCaseAlphabets: true,
+      lowerCaseAlphabets: true,
+      specialChars: false,
+    });
 
-    // if (existingUser) {
-    //   throw { email: "Email already registered" };
-    // }
+    const bcryptPassword = await bcrypt.hash(password, 10);
 
-    // const token = optGenerator.generate(12, {
-    //   upperCaseAlphabets: true,
-    //   lowerCaseAlphabets: true,
-    //   specialChars: false,
-    // });
+    const user = await User.create({
+      name,
+      email,
+      token,
+      password: bcryptPassword,
+      verified: false,
+    });
 
-    // const bcryptPassword = await bcrypt.hash(password, 10);
+    await RegisterMail({ id: user._id, email, name, token });
 
-    // const user = await User.create({
-    //   name,
-    //   email,
-    //   token,
-    //   password: bcryptPassword,
-    //   verified: false,
-    // });
-
-    // await RegisterMail({ id: user._id, email, name, token });
-
-    // return NextResponse.json(
-    //   { msg: `Verification mail sent to: ${email}` },
-    //   { status: 201 }
-    // );
+    return NextResponse.json(
+      { msg: `Verification mail sent to: ${email}` },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
