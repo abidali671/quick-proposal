@@ -1,5 +1,5 @@
 const mongoUri =
-  "mongodb+srv://abidali671:3qExTPaZjAJ6WX43@cluster0.cbh5wlu.mongodb.net/client?retryWrites=true&w=majority";
+  "mongodb+srv://admin:admin@cluster0.2yfgxuc.mongodb.net/quick_proposal?retryWrites=true&w=majority";
 
 const clientBaseUrl = process.env.NEXT_PUBLIC_CLIENT_BASE_URL;
 
