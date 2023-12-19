@@ -13,44 +13,41 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, password } = await request.json();
 
-    return NextResponse.json(
-      { msg: mongoose?.connection?.readyState },
-      { status: 201 }
-    );
+    return NextResponse.json({ msg: global?.mongoose }, { status: 201 });
 
-    await RegisterSchema.validate(
-      { name, email, password },
-      { abortEarly: false, strict: true }
-    );
+    // await RegisterSchema.validate(
+    //   { name, email, password },
+    //   { abortEarly: false, strict: true }
+    // );
 
-    const existingUser = await User.findOne({ email });
+    // const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
-      throw { email: "Email already registered" };
-    }
+    // if (existingUser) {
+    //   throw { email: "Email already registered" };
+    // }
 
-    const token = optGenerator.generate(12, {
-      upperCaseAlphabets: true,
-      lowerCaseAlphabets: true,
-      specialChars: false,
-    });
+    // const token = optGenerator.generate(12, {
+    //   upperCaseAlphabets: true,
+    //   lowerCaseAlphabets: true,
+    //   specialChars: false,
+    // });
 
-    const bcryptPassword = await bcrypt.hash(password, 10);
+    // const bcryptPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({
-      name,
-      email,
-      token,
-      password: bcryptPassword,
-      verified: false,
-    });
+    // const user = await User.create({
+    //   name,
+    //   email,
+    //   token,
+    //   password: bcryptPassword,
+    //   verified: false,
+    // });
 
-    await RegisterMail({ id: user._id, email, name, token });
+    // await RegisterMail({ id: user._id, email, name, token });
 
-    return NextResponse.json(
-      { msg: `Verification mail sent to: ${email}` },
-      { status: 201 }
-    );
+    // return NextResponse.json(
+    //   { msg: `Verification mail sent to: ${email}` },
+    //   { status: 201 }
+    // );
   } catch (error) {
     return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
