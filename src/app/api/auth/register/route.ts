@@ -8,12 +8,15 @@ import { ErrorHandler } from "@/utils";
 import config from "@/utils/config";
 import User from "@/models/user";
 import mongoose from "mongoose";
+import connectMongoDB from "@/utils/mongodb";
 
 export async function POST(request: NextRequest) {
   try {
     const { name, email, password } = await request.json();
 
-    return NextResponse.json({ msg: global?.mongoose }, { status: 201 });
+    await connectMongoDB();
+
+    return NextResponse.json({ msg: "Connected to DB" }, { status: 201 });
 
     // await RegisterSchema.validate(
     //   { name, email, password },

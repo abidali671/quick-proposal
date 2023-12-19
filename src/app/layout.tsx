@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import { Inter } from "next/font/google";
 
-import connectMongoDB from "@/utils/mongodb";
+// import connectMongoDB from "@/utils/mongodb";
 import Header from "@/components/Header";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -17,20 +17,20 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: any) {
-  let isConnected = false;
+  // let isConnected = false;
 
-  const handleConnect = async () => {
-    try {
-      await connectMongoDB();
-      isConnected = true;
+  // const handleConnect = async () => {
+  //   try {
+  //     await connectMongoDB();
+  //     isConnected = true;
 
-      console.log("Mongo connection succeed");
-    } catch (err) {
-      console.log("Mongo connection failed: ", err);
-    }
-  };
+  //     console.log("Mongo connection succeed");
+  //   } catch (err) {
+  //     console.log("Mongo connection failed: ", err);
+  //   }
+  // };
 
-  !isConnected && handleConnect();
+  // !isConnected && handleConnect();
 
   return (
     <html lang="en">
