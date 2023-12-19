@@ -4,10 +4,9 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 
 import { RegisterSchema } from "@/schema/auth";
-import connectMongoDB from "@/utils/mongodb";
-import config from "@/utils/config";
-// import User from "@/models/user";
 import { ErrorHandler } from "@/utils";
+import config from "@/utils/config";
+import User from "@/models/user";
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,13 +17,11 @@ export async function POST(request: NextRequest) {
       { abortEarly: false, strict: true }
     );
 
-    // await connectMongoDB();
+    const existingUser = await User.findOne({ email });
 
-    // const existingUser = await User.findOne({ email });
-
-    // if (existingUser) {
-    //   throw { email: "Email already registered" };
-    // }
+    if (existingUser) {
+      throw { email: "Email already registered" };
+    }
 
     const token = optGenerator.generate(12, {
       upperCaseAlphabets: true,
@@ -34,15 +31,15 @@ export async function POST(request: NextRequest) {
 
     const bcryptPassword = await bcrypt.hash(password, 10);
 
-    // const user = await User.create({
-    //   name,
-    //   email,
-    //   token,
-    //   password: bcryptPassword,
-    //   verified: false,
-    // });
+    const user = await User.create({
+      name,
+      email,
+      token,
+      password: bcryptPassword,
+      verified: false,
+    });
 
-    await RegisterMail({ id: "user._id", email, name, token });
+    await RegisterMail({ id: user._id, email, name, token });
 
     return NextResponse.json(
       { msg: `Verification mail sent to: ${email}` },
