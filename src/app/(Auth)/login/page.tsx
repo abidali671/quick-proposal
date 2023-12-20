@@ -8,17 +8,26 @@ import Button from "@/components/Button";
 import { clientAPI } from "@/utils/api";
 import Link from "next/link";
 import AuthLayout from "@/components/AuthLayout";
+import { toast } from "react-toastify";
 
 function Login() {
-  const { values, setFieldValue, handleSubmit } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: async (data) => {
-      const response = await clientAPI.post("/auth/login", data);
-    },
-  });
+  const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      onSubmit: async (data, formikHelpers) => {
+        try {
+          const response = await clientAPI.post("/auth/login", data);
+          toast(response.data.msg, { type: "success" });
+        } catch (error: any) {
+          if (error.response.data.non_field_error)
+            toast(error.response.data.non_field_error, { type: "error" });
+          else formikHelpers.setErrors(error.response.data);
+        }
+      },
+    });
 
   return (
     <AuthLayout>
@@ -31,11 +40,13 @@ function Login() {
           <Input
             label="Email"
             value={values.email}
+            error={errors.email}
             onChange={(event) => setFieldValue("email", event.target.value)}
           />
           <Input
             label="Password"
             value={values.password}
+            error={errors.password}
             onChange={(event) => setFieldValue("password", event.target.value)}
             type="password"
           />
@@ -43,7 +54,7 @@ function Login() {
             Forgot password?
           </Link>
         </div>
-        <Button label="Continue" type="submit" />
+        <Button label="Continue" type="submit" loading={isSubmitting} />
         <p className="text-white text-sm mt-2">
           <span className="font-medium">Don&apos;t have an account?</span>{" "}
           <Link className="text-gray-400" href="/register">

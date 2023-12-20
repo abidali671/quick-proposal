@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
-import User from "@/models/user";
-import { ErrorHandler } from "@/utils";
+import { ErrorHandler, registerMail, supabase } from "@/utils";
 
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
-    const user = await User.findOne({
-      email,
-    });
+    let { data: existingUserByEmail } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("email", email);
+
+    const user = existingUserByEmail?.[0];
 
     const isCorrectPassword =
       user && (await bcrypt.compare(password, user.password));
@@ -18,10 +20,18 @@ export async function POST(request: NextRequest) {
     if (isCorrectPassword) {
       const { verified } = user;
 
-      if (!verified)
+      if (!verified) {
+        await registerMail({
+          id: user.id,
+          name: user.name,
+          token: user.token,
+          email,
+        });
+
         throw {
-          non_field_error: "User is not verified",
+          non_field_error: `Email is not verified. Verification link sent to: ${email}`,
         };
+      }
     } else
       throw {
         non_field_error: "Invalid username or password",
