@@ -15,9 +15,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
           isOpen ? "translate-x-0" : " translate-x-full"
         }`}
       >
-        <ul className="flex flex-col p-10 gap-7 [&>*]:text-black">
+        <ul className="flex flex-col p-10 gap-7 text-black ">
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/" onClick={handleSidebar}>
+              Home
+            </Link>
           </li>
           <li>Pricing</li>
           <li>Contact</li>
