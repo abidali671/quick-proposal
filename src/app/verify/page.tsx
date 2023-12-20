@@ -47,7 +47,12 @@ function Verify({ searchParams }: IProps) {
         <p className="text-sm font-medium text-center text-gray-400 ">
           Email Verification By Token
         </p>
-        <div className="h-48 flex items-center justify-between flex-col">
+        <div
+          className={
+            "h-48 flex items-center flex-col " +
+            (loading ? "justify-center" : "justify-between")
+          }
+        >
           {loading ? (
             <Spinner className="!h-12 !w-12" />
           ) : (
@@ -58,11 +63,11 @@ function Verify({ searchParams }: IProps) {
                   ? "Congratulations! Your account has been successfully verified."
                   : "We regret to inform you that your email verification was unsuccessful."}
               </p>
+              <Link href="/login" className="w-full">
+                <Button label="Go to login" />
+              </Link>
             </React.Fragment>
           )}
-          <Link href="/login" className="w-full">
-            <Button label="Go to login" />
-          </Link>
         </div>
       </div>
     </AuthLayout>
