@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import "react-toastify/dist/ReactToastify.css";
 
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/global.css";
 import Head from "next/head";
 

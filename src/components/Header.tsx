@@ -11,7 +11,7 @@ const Header = () => {
     <nav className={`hero-nav ${stickyClass}`}>
       <div className="nav-container">
         {stickyClass == "dark" ? <LogoDark /> : <LogoLight />}
-        <ul className={`hero-ul relative`}>
+        <ul className={`hero-ul`}>
           <li>
             <Link href="/">Home</Link>
           </li>

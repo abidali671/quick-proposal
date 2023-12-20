@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
 import config from "./config";
 
-const connectMongoDB = async () => {
-  try {
-    await mongoose.connect(config.mongoUri);
-  } catch (error) {
-    console.log(error);
-  }
+const connectMongoDB = () => {
+  if (mongoose.connection.readyState >= 1) return;
+  mongoose.connect(config.mongoUri);
 };
 
 export default connectMongoDB;
