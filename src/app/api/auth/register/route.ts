@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 
 import { RegisterSchema } from "@/schema/auth";
-import { ErrorHandler, Prisma } from "@/utils";
+import { ErrorHandler, supabase } from "@/utils";
 import config from "@/utils/config";
 
 export async function POST(request: NextRequest) {
@@ -16,9 +16,12 @@ export async function POST(request: NextRequest) {
       { abortEarly: false, strict: true }
     );
 
-    const existingUser = await Prisma.users.findFirst({ where: { email } });
+    let { data: existingUserByEmail } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("email", email);
 
-    if (existingUser) {
+    if (existingUserByEmail?.length) {
       throw { email: "Email already registered" };
     }
 
@@ -30,18 +33,20 @@ export async function POST(request: NextRequest) {
 
     const bcryptPassword = await bcrypt.hash(password, 10);
 
-    await Prisma.users.create({
-      data: {
-        name,
-        email,
-        token,
-        verified: false,
-        password: bcryptPassword,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        v: 0,
-      },
-    });
+    const { error } = await supabase
+      .from("Users")
+      .insert([
+        {
+          name,
+          email,
+          token,
+          verified: false,
+          password: bcryptPassword,
+        },
+      ])
+      .select();
+
+    if (error) throw { msg: "Something is wrong. Please try again later." };
 
     await RegisterMail({ email, name, token });
 
