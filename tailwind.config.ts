@@ -28,6 +28,7 @@ const config: Config = {
           light_hover: "#ff6347",
           dark: "#FF8945",
         },
+        'footer-link': '#3c6c70'
       },
       fontFamily: {
         raleway: ["Raleway", "sans-serif"],
