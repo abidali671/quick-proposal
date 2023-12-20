@@ -33,6 +33,7 @@
 }
 
 @layer base {
+
   h5,
   h3,
   h1,
@@ -68,8 +69,4 @@
 
 .pricing-list li::before {
   content: "\2022";
-}
-
-.Toastify__toast-body {
-  font-size: 12px;
 }
