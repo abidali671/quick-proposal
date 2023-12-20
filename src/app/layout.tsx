@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "../styles/global.css";
 import Head from "next/head";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default async function RootLayout({ children }: any) {
           draggable
           closeButton={false}
         />
+        <Footer />
       </body>
     </html>
   );

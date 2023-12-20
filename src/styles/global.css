@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @import "./components/Header.css";
+@import "./components/footer.css";
 
 * {
   padding: 0px;
@@ -32,6 +33,7 @@
 }
 
 @layer base {
+
   h5,
   h3,
   h1,

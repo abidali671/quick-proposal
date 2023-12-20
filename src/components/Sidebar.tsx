@@ -11,18 +11,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
       {/* overlay */}
 
       <div
-        className={`w-6/12 h-screen   bg-gray-200 fixed top-0 right-0  transition-transform duration-300 z-20 ${
+        className={` md:w-8/12 w-10/12 h-screen   bg-white fixed top-0 right-0  transition-transform duration-300 z-20 ${
           isOpen ? "translate-x-0" : " translate-x-full"
         }`}
       >
-        <ul className="flex flex-col p-10 gap-7 text-black ">
-          <li>
+        <ul className="flex flex-col pt-16  [&>*]:p-3 [&>*]:cursor-pointer    text-black ">
+          <li className="hover:bg-gray-200 font-medium ">
             <Link href="/" onClick={handleSidebar}>
               Home
             </Link>
           </li>
-          <li>Pricing</li>
-          <li>Contact</li>
+          <li className="hover:bg-gray-200 font-medium  ">Pricing</li>
+          <li className="hover:bg-gray-200  font-medium ">Contact</li>
 
           <Link href="/app">
             <button className="primary-btn hidden md:block">Get Started</button>
@@ -36,7 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
           className="fixed inset-0 bg-black opacity-50 z-10"
         ></div>
       )}
-      <div onClick={handleSidebar} className="relative z-40 cursor-pointer">
+      <div onClick={handleSidebar} className="relative  z-40 cursor-pointer">
         {isOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`w-9 h-9  block md:hidden ${isOpen && "text-black"}  `}
+            className={`w-7 h-7  block md:hidden ${isOpen && "text-black"}  `}
           >
             <path
               strokeLinecap="round"
@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className={`w-9 h-9 block md:hidden ${isOpen && "text-black"}  `}
+            className={`w-7 h-7 block md:hidden ${isOpen && "text-black"}  `}
           >
             <path
               strokeLinecap="round"
