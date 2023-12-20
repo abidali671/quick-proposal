@@ -4,31 +4,21 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 
 import { RegisterSchema } from "@/schema/auth";
-import { ErrorHandler } from "@/utils";
+import { ErrorHandler, Prisma } from "@/utils";
 import config from "@/utils/config";
-import User from "@/models/user";
-import connectMongoDB from "@/utils/mongodb";
-import mongoose from "mongoose";
-
-connectMongoDB();
 
 export async function POST(request: NextRequest) {
   try {
     const { name, email, password } = await request.json();
 
-    return NextResponse.json(
-      {
-        msg: "code: " + mongoose.connection.readyState,
-      },
-      { status: 201 }
-    );
     await RegisterSchema.validate(
       { name, email, password },
       { abortEarly: false, strict: true }
     );
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await Prisma.users.findFirst({ where: { email } });
 
+    console.log("existingUser: ", existingUser);
     if (existingUser) {
       throw { email: "Email already registered" };
     }
@@ -41,21 +31,27 @@ export async function POST(request: NextRequest) {
 
     const bcryptPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({
-      name,
-      email,
-      token,
-      password: bcryptPassword,
-      verified: false,
+    await Prisma.users.create({
+      data: {
+        name,
+        email,
+        token,
+        verified: false,
+        password: bcryptPassword,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        v: 0,
+      },
     });
 
-    await RegisterMail({ id: user._id, email, name, token });
+    await RegisterMail({ email, name, token });
 
     return NextResponse.json(
       { msg: `Verification mail sent to: ${email}` },
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
 }
