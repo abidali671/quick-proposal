@@ -68,3 +68,7 @@
 .pricing-list li::before {
   content: "\2022";
 }
+
+.Toastify__toast-body {
+  font-size: 12px;
+}
