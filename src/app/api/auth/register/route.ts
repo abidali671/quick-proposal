@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     const bcryptPassword = await bcrypt.hash(password, 10);
 
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("Users")
       .insert([
         {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     if (error) throw { msg: "Something is wrong. Please try again later." };
 
-    await RegisterMail({ email, name, token });
+    await RegisterMail({ id: data[0].id, email, name, token });
 
     return NextResponse.json(
       { msg: `Verification mail sent to: ${email}` },
