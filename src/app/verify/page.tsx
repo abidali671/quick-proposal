@@ -59,8 +59,8 @@ function Verify({ searchParams }: IProps) {
               <div />
               <p className={"text-center text-white"}>
                 {success
-                  ? "Congratulations! Your account has been successfully verified."
-                  : "We regret to inform you that your email verification was unsuccessful."}
+                  ? "Congratulations! Your account has been successfully verified"
+                  : "We regret to inform you that your email verification was unsuccessful"}
               </p>
               <Link href="/login" className="w-full">
                 <Button label="Go to login" />
