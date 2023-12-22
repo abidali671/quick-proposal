@@ -1,7 +1,0 @@
-.fields_wrapper {
-  @apply flex flex-col gap-2 py-6;
-}
-
-.fields_wrapper label > p {
-  @apply text-white;
-}

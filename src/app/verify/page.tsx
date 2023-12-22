@@ -8,7 +8,6 @@ import Button from "@/components/Button";
 
 import { clientAPI } from "@/utils/api";
 
-import "./style.css";
 import Spinner from "@/components/Spinner";
 import { toast } from "react-toastify";
 
