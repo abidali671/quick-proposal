@@ -1,5 +1,7 @@
 "use client";
 
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 import React from "react";
 
@@ -252,6 +254,11 @@ const Home = () => {
       </div>
 
       {/* pricing section end */}
+      {/* contact form */}
+
+      <ContactForm />
+      {/* contact form end */}
+      <Footer />
     </div>
   );
 };
