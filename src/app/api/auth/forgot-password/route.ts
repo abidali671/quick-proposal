@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 
 import { ErrorHandler, registerMail, resetMail, supabase } from "@/utils";
 
