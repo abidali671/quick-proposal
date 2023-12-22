@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @import "./components/Header.css";
+@import "./components/footer.css";
 
 * {
   padding: 0px;
