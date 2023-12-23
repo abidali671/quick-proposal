@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useFormik } from "formik";
 
 import Input from "@/components/Input";
@@ -14,6 +14,8 @@ import AuthLayout from "@/components/AuthLayout";
 import "./style.css";
 
 function ResetPassword() {
+  const router = useRouter();
+
   const searchParams = useSearchParams();
 
   const [id, token] = ["id", "token"].map((i) => searchParams.get(i));
@@ -31,6 +33,7 @@ function ResetPassword() {
             token,
             ...data,
           });
+          router.push("/login");
           toast(response.data.msg, { type: "success" });
         } catch (error: any) {
           if (error.response.data.non_field_error)
