@@ -15,6 +15,8 @@ interface IProps {
 }
 
 function ResetPassword({ searchParams }: IProps) {
+  console.log("searchParams: ", searchParams);
+
   const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
     useFormik({
       initialValues: {
