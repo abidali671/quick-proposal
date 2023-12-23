@@ -2,6 +2,8 @@
     @apply flex items-center gap-4
 }
 
+
+
 .footer-ul svg {
     @apply text-footer-link w-4 h-4
 }
