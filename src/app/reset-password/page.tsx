@@ -1,21 +1,22 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 import { useFormik } from "formik";
+
 import Input from "@/components/Input";
-import "./style.css";
 import Button from "@/components/Button";
 import { clientAPI } from "@/utils/api";
-import Link from "next/link";
 import AuthLayout from "@/components/AuthLayout";
-import { toast } from "react-toastify";
 
-interface IProps {
-  searchParams: { id: string; token: string };
-}
+import "./style.css";
 
-function ResetPassword({ searchParams }: IProps) {
-  console.log("searchParams: ", searchParams);
+function ResetPassword() {
+  const searchParams = useSearchParams();
+
+  const [id, token] = ["id", "token"].map((i) => searchParams.get(i));
 
   const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
     useFormik({
@@ -26,8 +27,9 @@ function ResetPassword({ searchParams }: IProps) {
       onSubmit: async (data, formikHelpers) => {
         try {
           const response = await clientAPI.post("/auth/reset-password", {
+            id,
+            token,
             ...data,
-            ...searchParams,
           });
           toast(response.data.msg, { type: "success" });
         } catch (error: any) {
