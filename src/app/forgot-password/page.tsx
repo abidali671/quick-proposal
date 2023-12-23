@@ -2,15 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-
-import AuthLayout from "@/components/AuthLayout";
-import Button from "@/components/Button";
-
-import { clientAPI } from "@/utils/api";
-
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
+
 import Input from "@/components/Input";
+import AuthLayout from "@/components/AuthLayout";
+import Button from "@/components/Button";
+import { clientAPI } from "@/utils/api";
+
+import "./style.css";
 
 function ForgotPassword() {
   const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
@@ -39,7 +39,7 @@ function ForgotPassword() {
         <p className="text-sm font-medium text-center text-gray-400 ">
           Fill the form to continue
         </p>
-        <div className="py-6 min-h-40">
+        <div className="fields_wrapper">
           <Input
             label="Email"
             value={values.email}
