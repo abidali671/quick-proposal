@@ -2,27 +2,26 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 import AuthLayout from "@/components/AuthLayout";
 import Button from "@/components/Button";
-
+import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
 
-import Spinner from "@/components/Spinner";
-import { toast } from "react-toastify";
-
-interface IProps {
-  searchParams: { id: string; token: string };
-}
-
-function Verify({ searchParams }: IProps) {
+function Verify() {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
+
+  const searchParams = useSearchParams();
+
+  const [id, token] = ["id", "token"].map((i) => searchParams.get(i));
 
   useEffect(() => {
     const handleVerify = async () => {
       try {
-        const response = await clientAPI.post("/auth/verify", searchParams);
+        const response = await clientAPI.post("/auth/verify", { id, token });
         toast(response.data.msg, { type: "success" });
         setSuccess(true);
       } catch (error: any) {
