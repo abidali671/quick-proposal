@@ -15,17 +15,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
           isOpen ? "translate-x-0" : " translate-x-full"
         }`}
       >
-        <ul className="flex flex-col pt-16  [&>*]:p-3 [&>*]:cursor-pointer    text-black ">
-          <li className="hover:bg-gray-200 font-medium ">
-            <Link href="/" onClick={handleSidebar}>
-              Home
-            </Link>
-          </li>
-          <li className="hover:bg-gray-200 font-medium  ">Pricing</li>
-          <li className="hover:bg-gray-200  font-medium ">Contact</li>
-
-          <Link href="/app">
-            <button className="primary-btn hidden md:block">Get Started</button>
+        <ul className="flex flex-col pt-16  [&_li]:p-3 text-black ">
+          <Link href="/#home" onClick={handleSidebar}>
+            <li className="hover:bg-gray-200 font-medium">Home</li>
+          </Link>
+          <Link href="/#pricing" onClick={handleSidebar}>
+            <li className="hover:bg-gray-200 font-medium">Pricing</li>
+          </Link>
+          <Link href="/#contact-us" onClick={handleSidebar}>
+            <li className="hover:bg-gray-200 font-medium">Contact Us</li>
+          </Link>
+          <Link href="/app" onClick={handleSidebar}>
+            <li className="hover:bg-gray-200 font-medium">App</li>
           </Link>
         </ul>
       </div>

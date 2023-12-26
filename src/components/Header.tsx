@@ -13,10 +13,14 @@ const Header = () => {
         {stickyClass == "dark" ? <LogoDark /> : <LogoLight />}
         <ul className={`hero-ul`}>
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/#home">Home</Link>
           </li>
-          <li>Pricing</li>
-          <li>Contact</li>
+          <li>
+            <Link href="/#pricing">Pricing</Link>
+          </li>
+          <li>
+            <Link href="/#contact-us">Contact Us</Link>
+          </li>
           <li>
             <Link href="/app">
               <button className="primary-btn hidden md:block">
