@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LogoDark, LogoLight } from "@/assets/icon";
 import { Sidebar } from "./Sidebar";
 import useHeader from "@/hooks/useHeader";
+import Button from "./Button";
 
 const Header = () => {
   const { stickyClass, isOpen, handleSidebar } = useHeader();
@@ -21,11 +22,9 @@ const Header = () => {
           <li>
             <Link href="/#contact-us">Contact Us</Link>
           </li>
-          <li>
+          <li className="w-32">
             <Link href="/app">
-              <button className="primary-btn hidden md:block">
-                Get Started
-              </button>
+              <Button label="Get Started" />
             </Link>
           </li>
         </ul>

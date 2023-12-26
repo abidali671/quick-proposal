@@ -6,11 +6,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ loading, label, ...rest }) => {
+const Button: React.FC<ButtonProps> = ({
+  loading,
+  label,
+  className = "",
+  ...rest
+}) => {
   return (
     <button
       disabled={loading}
-      className="w-full h-10 bg-orange-light rounded-lg text-white font-medium"
+      className={
+        "w-full h-10 bg-orange-light rounded-lg text-white font-medium " +
+        className
+      }
       {...rest}
     >
       {loading ? <Spinner /> : label}

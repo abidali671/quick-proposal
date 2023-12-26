@@ -1,8 +1,10 @@
 "use client";
 
+import Button from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Home = () => {
@@ -30,8 +32,10 @@ const Home = () => {
                 create winning Upwork and freelance job proposals in no time.
               </p>
 
-              <div className="pt-5">
-                <button className="primary-btn">Get Started</button>
+              <div className="pt-5 w-32">
+                <Link href="/app">
+                  <Button label="Get Started" />
+                </Link>
               </div>
             </div>
             <div className="hero-right">
@@ -206,9 +210,11 @@ const Home = () => {
                 <li>Mobile Apps</li>
                 <li>Email Support</li>
               </ul>
-              <button className="primary-btn hidden md:block">
-                Get Started
-              </button>
+              <div className="w-32">
+                <Link href="/app">
+                  <Button label="Get Started" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="pricing-card">
@@ -225,9 +231,11 @@ const Home = () => {
                 <li>Mobile Apps</li>
                 <li>Email Support</li>
               </ul>
-              <button className="primary-btn hidden md:block">
-                Get Started
-              </button>
+              <div className="w-32">
+                <Link href="/app">
+                  <Button label="Get Started" />
+                </Link>
+              </div>
             </div>
           </div>
           <div className="pricing-card">
@@ -246,9 +254,11 @@ const Home = () => {
                 <li>Mobile Apps</li>
                 <li>Email Support</li>
               </ul>
-              <button className="primary-btn hidden md:block">
-                Get Started
-              </button>
+              <div className="w-32">
+                <Link href="/app">
+                  <Button label="Get Started" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
