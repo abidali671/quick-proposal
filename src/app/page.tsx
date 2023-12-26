@@ -190,12 +190,14 @@ const Home = () => {
         <h6 className="text-green-light font-bold text-center tracking-widest	">
           PRICING PLANS
         </h6>
-        <h3 className="text-5xl text-center font-bold">
-          Choose the option that{" "}
-          <span className="text-orange-light">suit every team</span>
+        <h3 className="text-3xl text-center font-bold">
+          Explore Our{" "}
+          <span className="text-orange-light">Affordable Plans Tailored </span>
+          <br />
+          to Meet Your Needs
         </h3>
 
-        <div className="flex md:flex-row flex-col gap-7 justify-between    py-10">
+        <div className="flex md:flex-row flex-col gap-7 justify-between py-10">
           <div className="pricing-card">
             <div className="pt-10 flex flex-col gap-4">
               <h6 className="text-green-light font-bold text-2xl">Starter</h6>
@@ -266,6 +268,19 @@ const Home = () => {
 
       {/* pricing section end */}
       <ContactForm />
+      <div className="wrapper py-24">
+        <h6 className="text-green-light font-bold text-center tracking-widest	">
+          TESTIMONIALS
+        </h6>
+        <h3 className="text-3xl text-center font-bold">
+          Discover What Our{" "}
+          <span className="text-orange-light">Happy Customers</span>
+          <br />
+          Have to Say
+        </h3>
+
+        {/* Testimonial Section */}
+      </div>
       <Footer />
     </div>
   );
