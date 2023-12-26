@@ -12,7 +12,7 @@ export default function AuthLayout({
         src={Background.src}
         alt="background"
       />
-      <div className="bg-gray-dark shadow p-5 relative w-full max-w-sm rounded-lg">
+      <div className="bg-gray-dark shadow p-5 relative w-full max-w-sm rounded-md">
         {children}
       </div>
     </div>

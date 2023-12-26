@@ -76,7 +76,7 @@ export default function Home() {
           <input
             required
             placeholder="Job Title"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+            className="px-3 py-2 border-2 border-gray-500 rounded-md"
             value={values.title}
             onChange={(e) => handleUpdateValue("title", e.target.value)}
           />
@@ -86,7 +86,7 @@ export default function Home() {
           <textarea
             required
             placeholder="Job Description"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+            className="px-3 py-2 border-2 border-gray-500 rounded-md"
             rows={15}
             value={values.description}
             onChange={(e) => handleUpdateValue("description", e.target.value)}
@@ -96,7 +96,7 @@ export default function Home() {
           <p>Skills</p>
           <input
             placeholder="Job Required Skills"
-            className="px-3 py-2 border-2 border-gray-500 rounded-lg"
+            className="px-3 py-2 border-2 border-gray-500 rounded-md"
             value={values.skills}
             onChange={(e) => handleUpdateValue("skills", e.target.value)}
           />

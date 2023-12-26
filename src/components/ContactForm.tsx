@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Button from "./Button";
+import Input from "./Input";
 
 interface FormData {
   name: string;
@@ -47,44 +48,44 @@ const ContactForm: React.FC = () => {
           className="grid grid-cols-12 md:grid-cols-3 *:outline-none py-10 gap-6 "
           onSubmit={handleSubmit}
         >
-          <input
+          <Input
             type="text"
             placeholder="Name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            id=""
-            className="p-4 col-span-12 md:col-span-1"
+            className="col-span-12 md:col-span-1"
+            variant="filled"
           />
-          <input
+          <Input
             type="email"
             placeholder="Email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            id=""
-            className="p-4 col-span-12 md:col-span-1"
+            className="col-span-12 md:col-span-1"
+            variant="filled"
           />
-          <input
+          <Input
             type="number"
             placeholder="Phone"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            id=""
-            className="p-4 col-span-12 md:col-span-1"
+            className="col-span-12 md:col-span-1"
+            variant="filled"
           />
 
-          <textarea
+          <Input
             name="message"
-            placeholder="Message..."
-            id=""
-            cols={30}
+            placeholder="Message"
             value={formData.message}
             onChange={handleChange}
-            className="md:col-span-1 col-span-full md:col-start-1 md:col-end-4 p-4"
+            className="md:col-span-1 col-span-full md:col-start-1 md:col-end-4"
             rows={10}
-          ></textarea>
+            multiline
+            variant="filled"
+          />
 
           <Button
             className="mx-auto col-span-3 max-w-60"
