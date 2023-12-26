@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -57,14 +57,16 @@ function ResetPassword() {
             label="New password"
             value={values.password}
             error={errors.password}
-            onChange={(event) => setFieldValue("password", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("password", event.target.value)
+            }
             type="password"
           />
           <Input
             label="Confirm new password"
             value={values.confirm_password}
             error={errors.confirm_password}
-            onChange={(event) =>
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
               setFieldValue("confirm_password", event.target.value)
             }
             type="password"
