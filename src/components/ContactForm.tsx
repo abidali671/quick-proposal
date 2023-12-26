@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import Button from "./Button";
 
 interface FormData {
   name: string;
@@ -43,7 +44,7 @@ const ContactForm: React.FC = () => {
         <h1 className="text-4xl font-bold text-center">Contact Form</h1>
 
         <form
-          className="grid grid-cols-12 md:grid-cols-3 [&>*]:bg-black/10 *:outline-none py-10 gap-6 "
+          className="grid grid-cols-12 md:grid-cols-3 *:outline-none py-10 gap-6 "
           onSubmit={handleSubmit}
         >
           <input
@@ -85,12 +86,11 @@ const ContactForm: React.FC = () => {
             rows={10}
           ></textarea>
 
-          <button
+          <Button
+            className="mx-auto col-span-3 max-w-60"
             type="submit"
-            className="text-white !bg-orange-light text-center col-span-full   w-32 p-3 rounded-sm mx-auto"
-          >
-            Submit
-          </button>
+            label="Submit"
+          />
         </form>
       </div>
     </div>
