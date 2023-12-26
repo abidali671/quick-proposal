@@ -8,7 +8,7 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      <div className="bg-gray-dark relative">
+      <div id="home" className="bg-gray-dark relative">
         <div
           className="hero-overlay"
           style={{
@@ -179,85 +179,83 @@ const Home = () => {
       {/* Discover features end */}
 
       {/* pricing section start */}
-      <div className="bg-[url('https://n.foxdsgn.com/twilo/wp-content/uploads/2022/04/Frame-55.png')]  bg-center bg-contain">
-        <div className="wrapper py-32">
-          <h6 className="text-green-light font-bold text-center tracking-widest	">
-            PRICING PLANS
-          </h6>
-          <h3 className="text-5xl text-center font-bold">
-            Choose the option that{" "}
-            <span className="text-orange-light">suit every team</span>
-          </h3>
+      <div
+        id="pricing"
+        className="wrapper py-24 bg-[url('https://n.foxdsgn.com/twilo/wp-content/uploads/2022/04/Frame-55.png')]  bg-center bg-contain"
+      >
+        <h6 className="text-green-light font-bold text-center tracking-widest	">
+          PRICING PLANS
+        </h6>
+        <h3 className="text-5xl text-center font-bold">
+          Choose the option that{" "}
+          <span className="text-orange-light">suit every team</span>
+        </h3>
 
-          <div className="flex md:flex-row flex-col gap-7 justify-between    py-10">
-            <div className="pricing-card">
-              <div className="pt-10 flex flex-col gap-4">
-                <h6 className="text-green-light font-bold text-2xl">Starter</h6>
-                <p>For small team just getting started.</p>
-              </div>
-
-              <div className="pt-10 flex flex-col gap-4">
-                <h1 className="text-5xl font-bold font-sans">$50</h1>
-                <ul className="pricing-list">
-                  <li className="list-disc ">Email ticketing</li>
-                  <li>Customer Management</li>
-                  <li>Mobile Apps</li>
-                  <li>Email Support</li>
-                </ul>
-                <button className="primary-btn hidden md:block">
-                  Get Started
-                </button>
-              </div>
+        <div className="flex md:flex-row flex-col gap-7 justify-between    py-10">
+          <div className="pricing-card">
+            <div className="pt-10 flex flex-col gap-4">
+              <h6 className="text-green-light font-bold text-2xl">Starter</h6>
+              <p>For small team just getting started.</p>
             </div>
-            <div className="pricing-card">
-              <div className="pt-10 flex flex-col gap-4">
-                <h6 className="text-green-light font-bold text-2xl">Team</h6>
-                <p>For small team just getting started.</p>
-              </div>
 
-              <div className="pt-10 flex flex-col gap-4">
-                <h1 className="text-5xl font-bold font-sans">$150</h1>
-                <ul className="pricing-list">
-                  <li className="list-disc text-lg">Email ticketing</li>
-                  <li>Customer Management</li>
-                  <li>Mobile Apps</li>
-                  <li>Email Support</li>
-                </ul>
-                <button className="primary-btn hidden md:block">
-                  Get Started
-                </button>
-              </div>
+            <div className="pt-10 flex flex-col gap-4">
+              <h1 className="text-5xl font-bold font-sans">$50</h1>
+              <ul className="pricing-list">
+                <li className="list-disc ">Email ticketing</li>
+                <li>Customer Management</li>
+                <li>Mobile Apps</li>
+                <li>Email Support</li>
+              </ul>
+              <button className="primary-btn hidden md:block">
+                Get Started
+              </button>
             </div>
-            <div className="pricing-card">
-              <div className="pt-10 flex flex-col gap-4">
-                <h6 className="text-green-light font-bold text-2xl">
-                  Enterprise
-                </h6>
-                <p>For small team just getting started.</p>
-              </div>
+          </div>
+          <div className="pricing-card">
+            <div className="pt-10 flex flex-col gap-4">
+              <h6 className="text-green-light font-bold text-2xl">Team</h6>
+              <p>For small team just getting started.</p>
+            </div>
 
-              <div className="pt-10 flex flex-col gap-4">
-                <h1 className="text-5xl font-bold font-sans">$250</h1>
-                <ul className="pricing-list">
-                  <li className="list-disc text-lg">Email ticketing</li>
-                  <li>Customer Management</li>
-                  <li>Mobile Apps</li>
-                  <li>Email Support</li>
-                </ul>
-                <button className="primary-btn hidden md:block">
-                  Get Started
-                </button>
-              </div>
+            <div className="pt-10 flex flex-col gap-4">
+              <h1 className="text-5xl font-bold font-sans">$150</h1>
+              <ul className="pricing-list">
+                <li className="list-disc text-lg">Email ticketing</li>
+                <li>Customer Management</li>
+                <li>Mobile Apps</li>
+                <li>Email Support</li>
+              </ul>
+              <button className="primary-btn hidden md:block">
+                Get Started
+              </button>
+            </div>
+          </div>
+          <div className="pricing-card">
+            <div className="pt-10 flex flex-col gap-4">
+              <h6 className="text-green-light font-bold text-2xl">
+                Enterprise
+              </h6>
+              <p>For small team just getting started.</p>
+            </div>
+
+            <div className="pt-10 flex flex-col gap-4">
+              <h1 className="text-5xl font-bold font-sans">$250</h1>
+              <ul className="pricing-list">
+                <li className="list-disc text-lg">Email ticketing</li>
+                <li>Customer Management</li>
+                <li>Mobile Apps</li>
+                <li>Email Support</li>
+              </ul>
+              <button className="primary-btn hidden md:block">
+                Get Started
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {/* pricing section end */}
-      {/* contact form */}
-
       <ContactForm />
-      {/* contact form end */}
       <Footer />
     </div>
   );

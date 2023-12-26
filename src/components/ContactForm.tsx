@@ -38,12 +38,12 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="wrapper py-24" id="contact-us">
       <div className="">
         <h1 className="text-4xl font-bold text-center">Contact Form</h1>
 
         <form
-          className="grid grid-cols-12 md:grid-cols-3 [&>*]:bg-black/10 *:outline-none  py-10   gap-6 "
+          className="grid grid-cols-12 md:grid-cols-3 [&>*]:bg-black/10 *:outline-none py-10 gap-6 "
           onSubmit={handleSubmit}
         >
           <input
