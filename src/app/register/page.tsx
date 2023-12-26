@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -43,19 +43,25 @@ function Register() {
             label="Name"
             value={values.name}
             error={errors.name}
-            onChange={(event) => setFieldValue("name", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("name", event.target.value)
+            }
           />
           <Input
             label="Email"
             value={values.email}
             error={errors.email}
-            onChange={(event) => setFieldValue("email", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("email", event.target.value)
+            }
           />
           <Input
             label="Password"
             value={values.password}
             error={errors.password}
-            onChange={(event) => setFieldValue("password", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("password", event.target.value)
+            }
             type="password"
           />
         </div>
