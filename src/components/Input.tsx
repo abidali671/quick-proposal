@@ -1,4 +1,8 @@
-import React, { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import React, {
+  ChangeEventHandler,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 
 interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -22,6 +26,7 @@ const Input: React.FC<InputProps> = ({
   multiline,
   className = "",
   variant = "outlined",
+  onChange,
   ...rest
 }) => {
   return (
@@ -36,6 +41,7 @@ const Input: React.FC<InputProps> = ({
               ? "border-gray-500"
               : "border-gray-100 bg-gray-100")
           }
+          onChange={onChange as ChangeEventHandler<HTMLTextAreaElement>}
           {...(rest as iTextareaProps)}
         />
       ) : (
@@ -47,6 +53,7 @@ const Input: React.FC<InputProps> = ({
               ? "border-gray-500"
               : "border-gray-100 bg-gray-100")
           }
+          onChange={onChange as ChangeEventHandler<HTMLInputElement>}
           {...(rest as iInputProps)}
         />
       )}

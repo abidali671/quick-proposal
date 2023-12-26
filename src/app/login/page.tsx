@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useFormik } from "formik";
 import Input from "@/components/Input";
 import "./style.css";
@@ -41,13 +41,17 @@ function Login() {
             label="Email"
             value={values.email}
             error={errors.email}
-            onChange={(event) => setFieldValue("email", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("email", event.target.value)
+            }
           />
           <Input
             label="Password"
             value={values.password}
             error={errors.password}
-            onChange={(event) => setFieldValue("password", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("password", event.target.value)
+            }
             type="password"
           />
           <Link className="text-gray-400 text-sm" href="/register">

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -44,7 +44,9 @@ function ForgotPassword() {
             label="Email"
             value={values.email}
             error={errors.email}
-            onChange={(event) => setFieldValue("email", event.target.value)}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setFieldValue("email", event.target.value)
+            }
           />
         </div>
         <Button label="Submit" type="submit" loading={isSubmitting} />
