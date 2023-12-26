@@ -42,7 +42,16 @@ const ContactForm: React.FC = () => {
   return (
     <div className="wrapper py-24" id="contact-us">
       <div className="">
-        <h1 className="text-4xl font-bold text-center">Contact Form</h1>
+        <h6 className="text-green-light font-bold text-center tracking-widest	">
+          Get in Touch
+        </h6>
+        <h3 className="text-3xl text-center font-bold">
+          Reach Out to Us for{" "}
+          <span className="text-orange-light">
+            Inquiries, Assistance, or
+            <br /> Just to Say Hello!
+          </span>
+        </h3>
 
         <form
           className="grid grid-cols-12 md:grid-cols-3 *:outline-none py-10 gap-6 "
