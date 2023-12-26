@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       disabled={loading}
       className={
-        "w-full h-10 bg-orange-light rounded-lg text-white font-medium " +
+        "w-full h-10 bg-orange-light rounded-md text-white font-medium " +
         className
       }
       {...rest}
