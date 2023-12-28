@@ -72,7 +72,7 @@ const Home = () => {
               Forget proposal panic! Unleash the secret weapon of top
               freelancers: Quick Proposal. Explore features that boost your win
               rate, slash writing time, and make you a client magnet. Dive in
-              and discover why savvy freelancers can't live without it.
+              and discover why savvy freelancers can&apos;t live without it.
             </p>
           </div>
           <div className="basis-5/12">
