@@ -1,16 +1,15 @@
 "use client";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
 import { ChangeEvent, FormEventHandler, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [copied, setCopied] = useState(false);
   const [data, setData] = useState<string[]>([]);
   const [originalData, setOriginalData] = useState<string[]>([]);
-  const [selectedData, setSelectedData] = useState(0);
+  const [selectedData] = useState(0);
   const [values, setValues] = useState({
     title: "",
     description: "",
@@ -41,10 +40,7 @@ export default function Home() {
 
   const handleCopyContent = () => {
     navigator.clipboard.writeText(data[selectedData]);
-    setCopied(true);
-    setTimeout(() => {
-      setCopied(false);
-    }, 1000);
+    toast("Text copied to the clipboard", { type: "success" });
   };
 
   const handleResetContent = () => {
@@ -61,10 +57,6 @@ export default function Home() {
         index === selectedData ? event.target.value : val
       )
     );
-  };
-
-  const handleChangeData = (index: number) => {
-    setSelectedData(index);
   };
 
   return (
@@ -109,58 +101,36 @@ export default function Home() {
           loading={loading}
         />
       </form>
-      <div className="h-full bg-white w-full flex flex-col gap-2 p-5 relative">
-        <div className="flex h-10 items-center justify-between">
-          {data.length > 0 && (
-            <>
-              <div className="flex gap-2">
-                <button
-                  disabled={selectedData === 0}
-                  onClick={() => handleChangeData(selectedData - 1)}
-                  className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 bg-gray-600 disabled:bg-gray-300`}
-                >
-                  Prev
-                </button>
-                <button
-                  disabled={selectedData === data.length - 1}
-                  onClick={() => handleChangeData(selectedData + 1)}
-                  className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 bg-gray-600 disabled:bg-gray-300`}
-                >
-                  Next
-                </button>
-              </div>
-              <p className="text-xs">
-                {selectedData + 1} / {data.length}
-              </p>
+      <div className="h-full bg-white w-full flex flex-col gap-2 p-5 relative ">
+        <div className="h-full w-full border border-gray-200 p-5 relative">
+          <div className="flex h-10 items-center justify-end absolute right-5 -top-5 bg-white rounded-md">
+            {data.length > 0 && (
               <div className="flex items-center gap-2">
                 {data[selectedData] !== originalData[selectedData] && (
-                  <button
-                    type="submit"
-                    className={`text-xs px-3 py-1 rounded text-gray-50 duration-300 bg-gray-600`}
+                  <Button
+                    size="sm"
+                    variant="secondary"
                     onClick={handleResetContent}
-                  >
-                    Reset Changes
-                  </button>
+                    label="Reset Changes"
+                  />
                 )}
-                <button
+                <Button
+                  size="sm"
+                  label="Copy"
                   type="submit"
-                  className={`text-xs w-14 py-1 rounded text-gray-50 duration-300 ${
-                    copied ? "bg-yellow-500" : "bg-gray-600"
-                  }`}
+                  variant="secondary"
                   onClick={handleCopyContent}
-                >
-                  {copied ? "Copied" : "Copy"}
-                </button>
+                />
               </div>
-            </>
-          )}
+            )}
+          </div>
+          <textarea
+            disabled={!data.length}
+            className="h-full w-full pt-1 resize-none outline-none"
+            value={data[selectedData]}
+            onChange={handleChangeContent}
+          />
         </div>
-        <textarea
-          disabled={!data.length}
-          className="h-full resize-none outline-none"
-          value={data[selectedData]}
-          onChange={handleChangeContent}
-        />
       </div>
     </div>
   );
