@@ -51,7 +51,7 @@ const Home = () => {
         </div>
       </div>
       {/* Discover features start */}
-      <div className="py-32  wrapper">
+      <div id="features" className="py-32  wrapper">
         <h6 className="font-bold text-green-light">STRUCTURE</h6>
 
         <div className="main-discover">
@@ -268,15 +268,15 @@ const Home = () => {
 
       {/* pricing section end */}
       <ContactForm />
-      <div className="wrapper py-24">
+      <div id="testimonials" className="wrapper py-24">
         <h6 className="text-green-light font-bold text-center tracking-widest	">
           TESTIMONIALS
         </h6>
         <h3 className="text-3xl text-center font-bold">
-          Discover What Our{" "}
-          <span className="text-orange-light">Happy Customers</span>
+          See What <span className="text-orange-light">Freelancers</span> Are
+          Saying About
           <br />
-          Have to Say
+          <span className="text-orange-light">Quick Proposal</span>
         </h3>
 
         {/* Testimonial Section */}

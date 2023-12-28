@@ -17,10 +17,16 @@ const Header = () => {
             <Link href="/#home">Home</Link>
           </li>
           <li>
+            <Link href="/#features">Features</Link>
+          </li>
+          <li>
             <Link href="/#pricing">Pricing</Link>
           </li>
           <li>
             <Link href="/#contact-us">Contact Us</Link>
+          </li>
+          <li>
+            <Link href="/#testimonials">Testimonials</Link>
           </li>
           <li className="w-32">
             <Link href="/app">
