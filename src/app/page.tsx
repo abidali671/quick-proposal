@@ -38,7 +38,7 @@ const Home = () => {
               </p>
 
               <div className="pt-5 w-32">
-                <Link href="/app">
+                <Link href="/register">
                   <Button label="Get Started" />
                 </Link>
               </div>
@@ -154,7 +154,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/app">
+                <Link href="/register">
                   <Button label="Get Started" />
                 </Link>
               </div>
@@ -175,7 +175,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/app">
+                <Link href="/register">
                   <Button label="Get Started" />
                 </Link>
               </div>

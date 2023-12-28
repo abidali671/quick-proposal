@@ -29,7 +29,7 @@ const Header = () => {
             <Link href="/#testimonials">Testimonials</Link>
           </li>
           <li className="w-32">
-            <Link href="/app">
+            <Link href="/register">
               <Button label="Get Started" />
             </Link>
           </li>
