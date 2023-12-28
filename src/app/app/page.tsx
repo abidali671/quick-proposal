@@ -1,4 +1,6 @@
 "use client";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
 import Spinner from "@/components/Spinner";
 import { clientAPI } from "@/utils/api";
 import { ChangeEvent, FormEventHandler, useState } from "react";
@@ -71,42 +73,41 @@ export default function Home() {
         onSubmit={handleSend}
         className=" bg-white w-full h-full flex flex-col gap-4 border-r border-gray-200 p-5 shadow-sm"
       >
-        <label className="flex flex-col gap-1">
-          <p>Job Title</p>
-          <input
-            required
-            placeholder="Job Title"
-            className="px-3 py-2 border-2 border-gray-500 rounded-md"
-            value={values.title}
-            onChange={(e) => handleUpdateValue("title", e.target.value)}
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <p>Job Description</p>
-          <textarea
-            required
-            placeholder="Job Description"
-            className="px-3 py-2 border-2 border-gray-500 rounded-md"
-            rows={15}
-            value={values.description}
-            onChange={(e) => handleUpdateValue("description", e.target.value)}
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <p>Skills</p>
-          <input
-            placeholder="Job Required Skills"
-            className="px-3 py-2 border-2 border-gray-500 rounded-md"
-            value={values.skills}
-            onChange={(e) => handleUpdateValue("skills", e.target.value)}
-          />
-        </label>
-        <button
+        <Input
+          required
+          label="Job Title"
+          value={values.title}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            handleUpdateValue("title", e.target.value)
+          }
+        />
+
+        <Input
+          rows={5}
+          multiline
+          required
+          label="Job Description"
+          value={values.description}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            handleUpdateValue("description", e.target.value)
+          }
+        />
+
+        <Input
+          label="Skills"
+          placeholder="Skills (optional)"
+          value={values.skills}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            handleUpdateValue("skills", e.target.value)
+          }
+        />
+
+        <Button
+          variant="secondary"
+          label="Generate Proposal"
           type="submit"
-          className="w-full h-10 bg-gray-600 rounded-xl text-gray-50"
-        >
-          {loading ? <Spinner /> : "Generate Proposal"}
-        </button>
+          loading={loading}
+        />
       </form>
       <div className="h-full bg-white w-full flex flex-col gap-2 p-5 relative">
         <div className="flex h-10 items-center justify-between">
