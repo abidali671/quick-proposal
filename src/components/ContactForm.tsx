@@ -1,43 +1,18 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useEffect } from "react";
+import { useForm, ValidationError } from "@formspree/react";
+
 import Button from "./Button";
 import Input from "./Input";
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
+import { toast } from "react-toastify";
+import config from "@/utils/config";
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [state, handleSubmit] = useForm(config.formSpreeId);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form data submitted:", formData);
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-  };
+  useEffect(() => {
+    state.succeeded &&
+      toast("Form submitted successfully", { type: "success" });
+  }, [state.succeeded]);
 
   return (
     <div className="wrapper py-24" id="contact-us">
@@ -61,8 +36,6 @@ const ContactForm: React.FC = () => {
             type="text"
             placeholder="Name"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
             className="col-span-12 md:col-span-1"
             variant="filled"
           />
@@ -70,17 +43,12 @@ const ContactForm: React.FC = () => {
             type="email"
             placeholder="Email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
             className="col-span-12 md:col-span-1"
             variant="filled"
           />
           <Input
-            type="number"
-            placeholder="Phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
+            placeholder="Subject"
+            name="subject"
             className="col-span-12 md:col-span-1"
             variant="filled"
           />
@@ -88,18 +56,21 @@ const ContactForm: React.FC = () => {
           <Input
             name="message"
             placeholder="Message"
-            value={formData.message}
-            onChange={handleChange}
             className="md:col-span-1 col-span-full md:col-start-1 md:col-end-4"
             rows={10}
             multiline
             variant="filled"
           />
-
+          <ValidationError
+            prefix="Message"
+            field="message"
+            errors={state.errors}
+          />
           <Button
             className="mx-auto col-span-3 max-w-60"
             type="submit"
             label="Submit"
+            loading={state.submitting}
           />
         </form>
       </div>
