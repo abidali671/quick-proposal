@@ -38,6 +38,7 @@ const ContactForm: React.FC = () => {
             name="name"
             className="col-span-12 md:col-span-1"
             variant="filled"
+            required
           />
           <Input
             type="email"
@@ -45,12 +46,14 @@ const ContactForm: React.FC = () => {
             name="email"
             className="col-span-12 md:col-span-1"
             variant="filled"
+            required
           />
           <Input
             placeholder="Subject"
             name="subject"
             className="col-span-12 md:col-span-1"
             variant="filled"
+            required
           />
 
           <Input
@@ -60,6 +63,7 @@ const ContactForm: React.FC = () => {
             rows={10}
             multiline
             variant="filled"
+            required
           />
           <ValidationError
             prefix="Message"
