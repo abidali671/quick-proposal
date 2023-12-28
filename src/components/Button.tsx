@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   variant?: "primary" | "secondary";
+  size?: "sm" | "md";
   label: string;
 }
 
@@ -12,13 +13,15 @@ const Button: React.FC<ButtonProps> = ({
   label,
   className = "",
   variant = "primary",
+  size = "md",
   ...rest
 }) => {
   return (
     <button
       disabled={loading}
       className={
-        "w-full h-10 rounded-md text-white font-medium " +
+        "w- rounded-md text-white font-medium whitespace-nowrap px-4 " +
+        (size === "md" ? "h-10 text-base " : "h-8 text-sm ") +
         (variant === "primary" ? "bg-orange-light " : "bg-gray-dark ") +
         className
       }
