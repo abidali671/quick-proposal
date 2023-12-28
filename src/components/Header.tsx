@@ -22,7 +22,7 @@ const Header = () => {
           <li>
             <Link href="/#contact-us">Contact Us</Link>
           </li>
-          <li className="w-32">
+          <li className="w-32 md:block hidden">
             <Link href="/app">
               <Button label="Get Started" />
             </Link>

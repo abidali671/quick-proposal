@@ -53,6 +53,7 @@ const Input: React.FC<InputProps> = ({
               ? "border-gray-500"
               : "border-gray-100 bg-gray-100")
           }
+        
           onChange={onChange as ChangeEventHandler<HTMLInputElement>}
           {...(rest as iInputProps)}
         />

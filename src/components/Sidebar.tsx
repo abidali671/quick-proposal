@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Button from "./Button";
 
 interface SidebarProps {
   handleSidebar: () => void;
@@ -27,6 +28,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
           </Link>
           <Link href="/app" onClick={handleSidebar}>
             <li className="hover:bg-gray-200 font-medium">App</li>
+          </Link>
+
+          <Link href="/app">
+            <li className="w-32 md:hidden block">
+              <Button label="Get Started" />
+            </li>
           </Link>
         </ul>
       </div>
