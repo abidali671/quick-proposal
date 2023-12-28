@@ -23,10 +23,6 @@
     @apply flex py-1.5 w-[130px] border-orange-light border-b-[1px] gap-2 text-orange-light items-center font-raleway font-semibold;
   }
 
-  .discover-card {
-    @apply flex flex-col gap-2 basis-full md:basis-4/12 bg-gray-50 p-10 flex-1;
-  }
-
   .pricing-card {
     @apply shadow-2xl border-[#E6E6E6] p-10 basis-4/12 flex flex-col bg-gray-100;
   }
@@ -48,11 +44,11 @@
 /* discover feature */
 
 .main-discover {
-  @apply flex py-4 justify-between flex-col md:flex-row gap-y-10;
+  @apply flex py-4 justify-between items-center flex-col md:flex-row gap-y-10;
 }
 
 .discover-left {
-  @apply flex flex-col gap-4 basis-6/12;
+  @apply flex flex-col gap-4 basis-6/12 md:max-w-md;
 }
 
 /* discover feature */

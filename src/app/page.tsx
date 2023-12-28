@@ -3,9 +3,14 @@
 import Button from "@/components/Button";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import config from "@/utils/config";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import BenefitsImage from "@/assets/benefits_vector.svg";
+import FeaturesImage from "@/assets/features_vector.svg";
+import FeaturesSectionImage from "@/assets/feature_section_vector.svg";
 
 const Home = () => {
   return (
@@ -52,131 +57,67 @@ const Home = () => {
       </div>
       {/* Discover features start */}
       <div id="features" className="py-32  wrapper">
-        <h6 className="font-bold text-green-light">STRUCTURE</h6>
-
         <div className="main-discover">
           <div className="discover-left">
-            <h3 className="text-5xl font-bold leading-tight">
-              Discover all
-              <span className="text-orange-light"> our features</span>
-            </h3>
-            <p className="text-gray-light ">
-              Nam libero tempore, cum soluta nobis est eligendi optio cumque
-              nihil impedit quo minus id quod maxime placeat facere possimus,
-              omnis voluptas assumenda est, omnis dolor repellendus temporibus
-              autem.
-            </p>
-            <div className="columns-2 w-11/12">
-              <p className="font-medium">Trends Tracking </p>
-              <br />
-              <p className="font-medium">Loyalty Programs</p>
-              <p className="font-medium"> Vendor Management </p>
-              <br />
-              <p className="font-medium"> Billing</p>
+            <div>
+              <h6 className="font-bold text-green-light">STRUCTURE</h6>
+              <h3 className="text-3xl font-bold leading-tight">
+                See the Features That Make{" "}
+                <span className="text-orange-light">Quick Proposal</span> a
+                Must-Have for{" "}
+                <span className="text-orange-light">Freelancers</span>
+              </h3>
             </div>
-            <button className="action-btn">
-              All categories
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
+            <p className="text-gray-light text-sm">
+              Forget proposal panic! Unleash the secret weapon of top
+              freelancers: Quick Proposal. Explore features that boost your win
+              rate, slash writing time, and make you a client magnet. Dive in
+              and discover why savvy freelancers can't live without it.
+            </p>
           </div>
           <div className="basis-5/12">
             <Image
               alt="image"
               height="600"
               width="600"
-              src="https://n.foxdsgn.com/twilo/wp-content/uploads/2022/08/Group-2335.png"
+              src={FeaturesSectionImage}
             />
           </div>
         </div>
-
-        <div className="flex pt-32  lg:flex-nowrap  flex-wrap gap-4">
-          <div className="discover-card ">
-            <h6 className="font-bold text-green-light">STRATEGY</h6>
-            <h3 className="font-bold text-2xl">Build your experience</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium.
-            </p>
-            <button className="action-btn ">
-              All categories
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
+        <div className="main-discover">
+          <div className="basis-5/12">
+            <Image alt="image" height="600" width="600" src={BenefitsImage} />
           </div>
-          <div className="discover-card ">
-            <h6 className="font-bold text-green-light">ABOUT US</h6>
-            <h3 className="font-bold text-2xl">Working process</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium.
-            </p>
-            <button className="action-btn">
-              All categories
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
+          <div className="discover-left">
+            <h3 className="text-3xl font-bold leading-tight text-orange-light">
+              Benefits
+            </h3>
+            <ul className="flex flex-col gap-2 text-gray-light text-sm">
+              {config.benefitsList.map((item, index) => (
+                <li key={index}>
+                  <span className="font-semibold">{item.label}:</span>{" "}
+                  {item.content}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="discover-card ">
-            <h6 className="font-bold text-green-light">DASHBOARD</h6>
-            <h3 className="font-bold text-2xl">Product features</h3>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium.
-            </p>
-            <button className="action-btn">
-              All categories
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
+        </div>
+        <div className="main-discover">
+          <div className="discover-left">
+            <h3 className="text-3xl font-bold leading-tight text-orange-light">
+              Features
+            </h3>
+            <ul className="flex flex-col gap-2 text-gray-light text-sm">
+              {config.featuresList.map((item, index) => (
+                <li key={index}>
+                  <span className="font-semibold">{item.label}:</span>{" "}
+                  {item.content}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="basis-5/12">
+            <Image alt="image" height="600" width="600" src={FeaturesImage} />
           </div>
         </div>
       </div>
