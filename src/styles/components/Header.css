@@ -31,11 +31,7 @@
 }
 
 .hero-ul {
-  @apply flex gap-10 items-center;
-}
-
-.hero-ul li:not(:last-child) {
-  @apply md:block hidden;
+  @apply gap-10 items-center md:flex hidden;
 }
 
 .hero-ul li:hover {
