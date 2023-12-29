@@ -1,13 +1,31 @@
 import { LogoLight } from "@/assets/icon";
 import Link from "next/link";
 import React from "react";
+import Input from "./Input";
+import Button from "./Button";
 
 const Footer = () => {
   return (
     <div className="wrapper py-32  ">
-      <div className="grid grid-cols-12    sm:text-left text-center place-items-center ">
-        <div className="col-span-12 sm:col-span-4  lg:col-span-3  sm:place-items-start    place-items-center   grid ">
+      <div className="grid grid-cols-12    sm:text-left text-center   px-5  md:place-items-center  ">
+        <div className="col-span-12 sm:col-span-3  lg:col-span-4  sm:place-items-start    place-items-center   grid ">
           <LogoLight />
+          <p className="py-9">
+            Quick Proposal is an AI-powered writing tool that helps you create
+            winning Upwork and freelance job proposals in no time.
+          </p>
+        </div>
+        <div className="col-span-12 sm:col-span-4 lg:col-span-2   ">
+          <h3 className="font-bold text-xl text-footer-link">Pages</h3>
+          <ul className="flex flex-col gap-2  text-footer-link  py-7">
+            <li>Home</li>
+            <li>Pricing</li>
+            <li>Contact </li>
+            <li>App</li>
+          </ul>
+        </div>
+        <div className="col-span-12 sm:col-span-4 lg:col-span-2   ">
+          <h3 className="font-bold text-xl text-footer-link">Contact info</h3>
           <ul className="footer-ul py-7 grid gap-2   sm:place-items-start    place-items-center  ">
             <li>
               <svg
@@ -64,41 +82,15 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-12 sm:col-span-4 lg:col-span-2   ">
-          <h3 className="font-bold text-xl text-footer-link">Pages</h3>
-          <ul className="flex flex-col gap-2   py-7">
-            <li>Home</li>
-            <li>Pricing</li>
-            <li>Contact </li>
-            <li>App</li>
-          </ul>
-        </div>
-        <div className="col-span-12 sm:col-span-4 lg:col-span-2  ">
-          <h3 className="font-bold text-xl text-footer-link">Services</h3>
-          <ul className="flex flex-col gap-2  py-7">
-            <li>Main Home</li>
-            <li> Member</li>
-            <li>Partners</li>
-            <li>Services</li>
-          </ul>
-        </div>
-        <div className="col-span-12 sm:col-span-4 lg:col-span-2 ">
-          <h3 className="font-bold text-xl text-footer-link">Company</h3>
-          <ul className="flex flex-col gap-2  py-7">
-            <li>Main Home</li>
-            <li>Team Member</li>
-            <li>Partners</li>
-            <li>Services</li>
-          </ul>
-        </div>
-        <div className="col-span-12 sm:col-span-4 lg:col-span-2  ">
-          <h3 className="font-bold text-xl text-footer-link">Resources</h3>
-          <ul className="flex flex-col gap-2  py-7">
-            <li>Main Home</li>
-            <li> Member</li>
-            <li>Partners</li>
-            <li>Services</li>
-          </ul>
+        <div className="col-span-12 sm:col-span-4 lg:col-span-4  self-center md:self-start ">
+          <h3 className="font-bold text-xl text-footer-link">Feedback</h3>
+          <div className="flex   sm:flex-row flex-col  gap-5    py-7">
+            <Input className="flex-1  " />
+            <Button
+              label=" Subscribe"
+              className="bg-orange-light text-white px-3 w-28 mx-auto rounded-md"
+            ></Button>
+          </div>
         </div>
       </div>
     </div>
