@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       disabled={loading}
       className={
-        "w- rounded-md text-white font-medium whitespace-nowrap px-4 " +
+        "w- rounded-md text-white font-medium whitespace-nowrap px-4 hover:bg-opacity-80 active:bg-opacity-60 " +
         (size === "md" ? "h-10 text-base " : "h-8 text-sm ") +
         (variant === "primary" ? "bg-orange-light " : "bg-gray-dark ") +
         className
