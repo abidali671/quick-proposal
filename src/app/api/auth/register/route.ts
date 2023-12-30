@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 
 import { RegisterSchema } from "@/schema/auth";
 import { ErrorHandler, registerMail, supabase } from "@/utils";
+import config from "@/utils/config";
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
           token,
           verified: false,
           password: bcryptPassword,
+          credits: config.initialFreeCredits,
         },
       ])
       .select();
