@@ -3,9 +3,6 @@ import config from "./config";
 
 export const clientAPI = Axios.create({
   baseURL: config.clientBaseUrl + "/api",
-  headers: {
-    Authorization: "Bearer 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",
-  },
 });
 
 export const openAI = Axios.create({
