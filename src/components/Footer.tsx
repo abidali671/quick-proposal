@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className="wrapper py-32  ">
       <div className="grid grid-cols-12    sm:text-left text-center   px-5  md:place-items-center  ">
-        <div className="col-span-12 sm:col-span-3  lg:col-span-4  sm:place-items-start    place-items-center   grid ">
+        <div className="col-span-12 md:col-span-3  lg:col-span-4  sm:place-items-start    place-items-center   grid ">
           <LogoLight />
           <p className="py-9">
             Quick Proposal is an AI-powered writing tool that helps you create
@@ -82,7 +82,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-12 sm:col-span-4 lg:col-span-4  self-center md:self-start ">
+        <div className="col-span-12   lg:col-span-4  self-center md:self-start ">
           <h3 className="font-bold text-xl text-footer-link">Feedback</h3>
           <div className="flex   sm:flex-row flex-col  gap-5    py-7">
             <Input className="flex-1  " />
