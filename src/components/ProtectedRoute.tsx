@@ -11,11 +11,12 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  let isLoggedIn = "";
   let accessToken = "";
 
   if (typeof window !== "undefined") {
     accessToken = localStorage?.getItem("accessToken") ?? "";
+    isLoggedIn = localStorage.getItem("isLoggedIn") ?? "";
   }
 
   useEffect(() => {
