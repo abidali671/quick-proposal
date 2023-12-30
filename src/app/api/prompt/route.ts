@@ -1,9 +1,15 @@
-import { API } from "@/utils";
+import { API, ErrorHandler } from "@/utils";
+import authenticate from "@/utils/Authenticate";
 import { NextRequest, NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 export async function POST(request: NextRequest) {
   try {
     const payload = await request.json();
+    const authorization = headers().get("authorization");
+    const user = authenticate(authorization ?? "");
+
+    console.log("user: ", user);
 
     const prompt = `Compose a response applying for a job opportunity with the given skills, title and description. Highlight your ability, and start immediately for a quick delivery. Inquire about more details. Inquire about more details regarding the job. The words should be less than 100, simple , easy and like human written. Also and some emojis. Add previous work URL list.
     title: "${payload.title}"
@@ -21,6 +27,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response.data);
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
 }
