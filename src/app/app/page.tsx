@@ -71,24 +71,6 @@ export default function Home() {
     );
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await clientAPI.get("/user", {
-          headers: {
-            Authorization: "Bearer " + accessToken,
-          },
-        });
-
-        localStorage.setItem("user", response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
   return (
     <ProtectedRoute>
       <div className="w-full grid md:grid-cols-[400px_1fr] max-md:grid-rows-[auto_1fr]">

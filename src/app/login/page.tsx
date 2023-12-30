@@ -22,6 +22,8 @@ function Login() {
           const response = await clientAPI.post("/auth/login", data);
           toast("Login Successful", { type: "success" });
           localStorage.setItem("accessToken", response.data.accessToken);
+          localStorage.setItem("user", response.data.user);
+          localStorage.setItem("isLoggedIn", "true");
         } catch (error: any) {
           if (error.response.data.non_field_error)
             toast(error.response.data.non_field_error, { type: "error" });
