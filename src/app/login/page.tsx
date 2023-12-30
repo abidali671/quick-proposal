@@ -20,7 +20,8 @@ function Login() {
       onSubmit: async (data, formikHelpers) => {
         try {
           const response = await clientAPI.post("/auth/login", data);
-          toast(response.data.msg, { type: "success" });
+          toast("Login Successful", { type: "success" });
+          localStorage.setItem("accessToken", response.data.accessToken);
         } catch (error: any) {
           if (error.response.data.non_field_error)
             toast(error.response.data.non_field_error, { type: "error" });
