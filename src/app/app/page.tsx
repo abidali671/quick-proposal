@@ -17,11 +17,17 @@ export default function Home() {
     skills: "",
   });
 
+  const accessToken = localStorage?.getItem("accessToken");
+
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
       setLoading(true);
       event.preventDefault();
-      const response = await clientAPI.post("/prompt", values);
+      const response = await clientAPI.post("/prompt", values, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      });
       const contentList = response.data.choices.map(
         (value: any) => value.message.content
       );
