@@ -3,6 +3,10 @@ const clientBaseUrl = process.env.NEXT_PUBLIC_CLIENT_BASE_URL;
 const mailerEmail = "abid.saeed.ali92@gmail.com";
 const mailerPassword = "zyti mjqw kshi cwkp";
 const formSpreeId = "xyyrygjz";
+const initialFreeCredits = 5;
+
+const secretAccessToken = "nMoO0lEQs3bfd2FSl324aDpLLsfSdk39ZO3X43e3dLkiQs25A4";
+const refreshToken = "lMBO0lEQs3b2d2FSl324ampTLsfSdk3KZO3Xr3e3WLkiQs25c3";
 
 const benefitsList = [
   {
@@ -58,6 +62,9 @@ const config = {
   benefitsList,
   featuresList,
   formSpreeId,
+  initialFreeCredits,
+  secretAccessToken,
+  refreshToken,
 };
 
 export default config;
