@@ -18,12 +18,14 @@ function FeedbackForm() {
             .map((_, i) =>
               hovered > i || selected > i ? (
                 <StarFilled
+                  key={i}
                   className="text-gray-600"
                   onMouseEnter={() => setHovered(i + 1)}
                   onClick={() => setSelected(i + 1)}
                 />
               ) : (
                 <StarOutlined
+                  key={i}
                   className="text-gray-600"
                   onMouseEnter={() => setHovered(i + 1)}
                   onClick={() => setSelected(i + 1)}
