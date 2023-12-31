@@ -6,7 +6,7 @@ import FeedbackForm from "./FeedbackForm";
 const Footer = () => {
   return (
     <div className="wrapper pt-32 pb-10">
-      <div className="grid grid-cols-10 gap-5 px-5">
+      <div className="grid grid-cols-10 gap-5 md:px-5">
         <div className="col-span-10 lg:col-span-3 ">
           <LogoLight />
           <p className="py-4 text-sm text-gray-500">
@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="col-span-10 md:col-span-5 lg:col-span-2">
           <h3 className="font-bold text-xl text-footer-link">Contact info</h3>
-          <ul className="footer-ul py-7 grid gap-2   sm:place-items-start    place-items-center  ">
+          <ul className="footer-ul py-7 grid gap-2">
             <li>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
