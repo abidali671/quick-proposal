@@ -3,8 +3,9 @@ import { ChatBox, History } from "@/assets/icon";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { useStore } from "@/lib/Context";
 import { clientAPI } from "@/utils/api";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, FormEventHandler, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Home() {
@@ -18,11 +19,7 @@ export default function Home() {
     skills: "",
   });
 
-  let accessToken = "";
-
-  if (typeof window !== "undefined") {
-    accessToken = localStorage?.getItem("accessToken") ?? "";
-  }
+  const { accessToken, updateUser } = useStore();
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
@@ -33,13 +30,17 @@ export default function Home() {
           Authorization: "Bearer " + accessToken,
         },
       });
-      const contentList = response.data.choices.map(
+
+      const contentList = response.data.result.choices.map(
         (value: any) => value.message.content
       );
 
+      updateUser(response.data.user);
       setData(contentList);
       setOriginalData(contentList);
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.response?.data?.error)
+        toast(error?.response?.data?.error, { type: "error" });
       console.log("client error: ", error);
     } finally {
       setLoading(false);

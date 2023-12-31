@@ -1,8 +1,11 @@
 "use client";
 
-import { clientAPI } from "@/utils/api";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { clientAPI } from "@/utils/api";
+import { useStore } from "@/lib/Context";
+
 import Spinner from "./Spinner";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
@@ -10,14 +13,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
-  let isLoggedIn = "";
-  let accessToken = "";
-
-  if (typeof window !== "undefined") {
-    accessToken = localStorage?.getItem("accessToken") ?? "";
-    isLoggedIn = localStorage.getItem("isLoggedIn") ?? "";
-  }
+  const { accessToken, updateUser, user } = useStore();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,18 +24,17 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
           },
         });
 
-        localStorage.setItem("user", response.data);
-        localStorage.setItem("isLoggedIn", "true");
+        updateUser(response.data);
         setLoading(false);
       } catch (error) {
-        localStorage.setItem("isLoggedIn", "false");
+        updateUser(null);
         router.push("/login");
         console.log(error);
       }
     };
 
     fetchUser();
-  }, []);
+  }, [accessToken]);
 
   if (loading)
     return (
@@ -48,7 +43,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
       </div>
     );
 
-  if (isLoggedIn !== "true") {
+  if (!user) {
     router.push("/login");
   }
 
