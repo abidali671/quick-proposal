@@ -202,7 +202,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/dashboard">
+                <Link href={getStartedLink}>
                   <Button label="Get Started" />
                 </Link>
               </div>
@@ -227,20 +227,24 @@ const Home = () => {
         {/* Testimonial Section */}
       </div>
       {/* More Projects */}
-      <div className="wrapper py-24 text-center gap-y-2">
-        <h3 className="text-3xl text-center font-bold">
-          Ready to Start Winning{" "}
-          <span className="text-orange-light">More Projects </span>
-        </h3>
-        <p className="text-sm">
-          Sign up for Quick Proposal today and start creating winning proposals
-          in minutes
-        </p>
-        <Button
-          className="mx-auto col-span-3 max-w-60"
-          type="submit"
-          label="Get Started For Free"
-        />
+      <div className="wrapper">
+        <div className="py-24 text-center gap-y-2 bg-gray-dark rounded-lg">
+          <h3 className="text-3xl text-center font-bold text-white">
+            Ready to Start Winning{" "}
+            <span className="text-orange-light">More Projects </span>
+          </h3>
+          <p className="text-sm mb-10 text-gray-400">
+            Sign up for Quick Proposal today and start creating winning
+            proposals in minutes
+          </p>
+          <Link href={getStartedLink}>
+            <Button
+              className="mx-auto col-span-3 max-w-60"
+              type="submit"
+              label="Get Started For Free"
+            />
+          </Link>
+        </div>
       </div>
       {/* More Projects end */}
       <Footer />
