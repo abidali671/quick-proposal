@@ -18,6 +18,8 @@ interface IContext {
   accessToken: string;
   updateUser: Dispatch<SetStateAction<User | null>>;
   updateAccessToken: (token: string) => void;
+  toggleHistory: () => void;
+  showHistory: boolean;
 }
 
 const Context = createContext<IContext>({
@@ -25,6 +27,8 @@ const Context = createContext<IContext>({
   accessToken: "",
   updateUser: () => {},
   updateAccessToken: () => {},
+  toggleHistory: () => {},
+  showHistory: false,
 });
 
 const getAccessToken = () => {
@@ -37,6 +41,11 @@ const getAccessToken = () => {
 export const ContextProvider = ({ children }: any) => {
   const [user, updateUser] = useState<null | User>(null);
   const [accessToken, setAccessToken] = useState<string>(getAccessToken());
+  const [showHistory, setShowHistory] = useState(false);
+
+  const toggleHistory = () => {
+    setShowHistory(!showHistory);
+  };
 
   const updateAccessToken = (token: string) => {
     setAccessToken(token);
@@ -45,7 +54,14 @@ export const ContextProvider = ({ children }: any) => {
 
   return (
     <Context.Provider
-      value={{ accessToken, user, updateUser, updateAccessToken }}
+      value={{
+        accessToken,
+        user,
+        updateUser,
+        updateAccessToken,
+        toggleHistory,
+        showHistory,
+      }}
     >
       {children}
     </Context.Provider>

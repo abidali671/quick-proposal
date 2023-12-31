@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { LogoDark, LogoLight, Logout } from "@/assets/icon";
+import { History, LogoDark, LogoLight, Logout } from "@/assets/icon";
 import { Sidebar } from "./Sidebar";
 import useHeader from "@/hooks/useHeader";
 import Button from "./Button";
@@ -10,7 +10,7 @@ import { useState } from "react";
 
 const Header = () => {
   const { stickyClass, isOpen, handleSidebar } = useHeader();
-  const { user, updateAccessToken } = useStore();
+  const { user, updateAccessToken, toggleHistory } = useStore();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -20,7 +20,7 @@ const Header = () => {
     return (
       <>
         <li>
-          <p className="text-white">
+          <p className="text-white max-md:text-sm">
             Available Credits: <b>{user?.credits}</b>
           </p>
         </li>
@@ -53,7 +53,7 @@ const Header = () => {
                 </div>
               </li>
               <li
-                className="px-2 py-3 flex items-center gap-2"
+                className="px-2 py-3 flex items-center gap-2 cursor-pointer"
                 onClick={() => {
                   updateAccessToken("");
                   router.push("/");
@@ -64,6 +64,9 @@ const Header = () => {
               </li>
             </ul>
           </div>
+        </li>
+        <li className="md:hidden cursor-pointer" onClick={toggleHistory}>
+          <History className="text-white ml-2" />
         </li>
       </>
     );
@@ -79,6 +82,11 @@ const Header = () => {
             <LogoLight className="h-9 md:h-10" />
           )}
         </Link>
+        {pathname === "/dashboard" && (
+          <ul className="flex gap-2 items-center md:hidden">
+            <DashboardNavList />
+          </ul>
+        )}
         <ul className={`hero-ul`}>
           {pathname === "/dashboard" ? (
             <DashboardNavList />
@@ -113,7 +121,12 @@ const Header = () => {
             </>
           )}
         </ul>
-        <div className={`md:hidden block side-menu ${stickyClass}`}>
+        <div
+          className={
+            `md:hidden block side-menu ${stickyClass} ` +
+            (pathname === "/dashboard" && "hidden")
+          }
+        >
           <Sidebar handleSidebar={handleSidebar} isOpen={isOpen} />
         </div>
       </div>

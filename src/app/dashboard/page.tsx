@@ -18,7 +18,8 @@ export default function Home() {
     skills: "",
   });
 
-  const { accessToken, updateUser, user } = useStore();
+  const { accessToken, updateUser, user, showHistory, toggleHistory } =
+    useStore();
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
@@ -105,7 +106,19 @@ export default function Home() {
             />
           </form>
           <div className="border-b border-gray-200" />
-          <div className="p-5 flex flex-col gap-1 w-full max-md:hidden">
+          <div
+            onClick={toggleHistory}
+            className={
+              "md:hidden fixed bg-black h-screen w-screen z-50 top-[56px] left-0 opacity-50 " +
+              (showHistory ? "block" : "hidden")
+            }
+          />
+          <div
+            className={
+              "p-5 flex flex-col gap-1 w-full max-md:fixed max-md:h-screen max-md:w-10/12 z-50 top-[56px] bg-white transition-all duration-30000 " +
+              (showHistory ? "left-0" : "-left-full")
+            }
+          >
             <div className="flex items-center gap-1 pb-1">
               <History className="text-gray-500 h-4 w-4" />
               <h6 className="text-xs font-semibold text-gray-400">HISTORY</h6>
@@ -117,6 +130,7 @@ export default function Home() {
                 onClick={() => {
                   setData(d?.choices?.[0]?.message?.content);
                   setOriginalData(d?.choices?.[0]?.message?.content);
+                  toggleHistory();
                 }}
               >
                 <ChatBox className="text-gray-500 w-5 h-5 min-w-5" />

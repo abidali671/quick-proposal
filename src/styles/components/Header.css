@@ -19,7 +19,7 @@
 }
 
 .nav-container {
-  @apply h-14 md:h-16 max-w-7xl mx-auto px-7 flex items-center justify-between;
+  @apply h-14 md:h-16 max-w-7xl mx-auto px-5 md:px-7 flex items-center justify-between;
 }
 
 .hero-nav.dark .hero-ul {
@@ -47,7 +47,7 @@
 }
 
 .hero-left {
-  @apply flex gap-3 flex-col basis-full md:basis-6/12 text-center md:text-left text-white;
+  @apply flex gap-3 flex-col max-md:items-center basis-full md:basis-6/12 text-center md:text-left text-white;
 }
 
 .hero-right {
