@@ -12,8 +12,10 @@ import { useRouter } from "next/navigation";
 import { clientAPI } from "@/utils/api";
 
 import "./style.css";
+import { useStore } from "@/lib/Context";
 
 function Login() {
+  const { updateUser, updateAccessToken } = useStore();
   const router = useRouter();
   const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
     useFormik({
@@ -25,9 +27,8 @@ function Login() {
         try {
           const response = await clientAPI.post("/auth/login", data);
           toast("Login Successful", { type: "success" });
-          localStorage.setItem("accessToken", response.data.accessToken);
-          localStorage.setItem("user", response.data.user);
-          localStorage.setItem("isLoggedIn", "true");
+          updateAccessToken(response.data.accessToken);
+          updateUser(response.data.user);
           router.push("/dashboard");
         } catch (error: any) {
           if (error.response.data.non_field_error)

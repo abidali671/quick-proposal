@@ -4,9 +4,14 @@ import { LogoDark, LogoLight } from "@/assets/icon";
 import { Sidebar } from "./Sidebar";
 import useHeader from "@/hooks/useHeader";
 import Button from "./Button";
+import { usePathname } from "next/navigation";
+import { useStore } from "@/lib/Context";
 
 const Header = () => {
   const { stickyClass, isOpen, handleSidebar } = useHeader();
+
+  const pathname = usePathname();
+  const store = useStore();
 
   return (
     <nav className={`hero-nav ${stickyClass}`}>

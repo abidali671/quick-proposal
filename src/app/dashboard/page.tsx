@@ -3,8 +3,9 @@ import { ChatBox, History } from "@/assets/icon";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { useStore } from "@/lib/Context";
 import { clientAPI } from "@/utils/api";
-import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, FormEventHandler, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Home() {
@@ -18,11 +19,7 @@ export default function Home() {
     skills: "",
   });
 
-  let accessToken = "";
-
-  if (typeof window !== "undefined") {
-    accessToken = localStorage?.getItem("accessToken") ?? "";
-  }
+  const { accessToken } = useStore();
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
