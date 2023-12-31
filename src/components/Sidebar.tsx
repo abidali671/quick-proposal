@@ -25,8 +25,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ handleSidebar, isOpen }) => {
           <Link href="/#contact-us" onClick={handleSidebar}>
             <li className="hover:bg-gray-200 font-medium">Contact Us</li>
           </Link>
-          <Link href="/app" onClick={handleSidebar}>
-            <li className="hover:bg-gray-200 font-medium">App</li>
+          <Link href="/dashboard" onClick={handleSidebar}>
+            <li className="hover:bg-gray-200 font-medium">Dashboard</li>
           </Link>
         </ul>
       </div>

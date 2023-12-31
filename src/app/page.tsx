@@ -198,7 +198,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/app">
+                <Link href="/dashboard">
                   <Button label="Get Started" />
                 </Link>
               </div>

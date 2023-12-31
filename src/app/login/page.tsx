@@ -28,7 +28,7 @@ function Login() {
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("user", response.data.user);
           localStorage.setItem("isLoggedIn", "true");
-          router.push("/app");
+          router.push("/dashboard");
         } catch (error: any) {
           if (error.response.data.non_field_error)
             toast(error.response.data.non_field_error, { type: "error" });
