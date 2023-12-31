@@ -17,10 +17,20 @@ const Footer = () => {
         <div className="col-span-10 md:col-span-5 lg:col-span-2">
           <h3 className="font-bold text-xl text-footer-link">Pages</h3>
           <ul className="flex flex-col gap-2  text-footer-link  py-7">
-            <li>Home</li>
-            <li>Pricing</li>
-            <li>Contact </li>
-            <li>App</li>
+            <li>
+              <Link href="/#home">Home</Link>
+            </li>
+            <li>
+              <Link href="/#features">Features</Link>
+            </li>
+
+            <li>
+              <Link href="/#contact-us">Contact Us</Link>
+            </li>
+
+            <li>
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
           </ul>
         </div>
         <div className="col-span-10 md:col-span-5 lg:col-span-2">

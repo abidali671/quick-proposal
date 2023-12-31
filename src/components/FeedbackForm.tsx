@@ -40,14 +40,14 @@ function FeedbackForm() {
               hovered > i || values.rating > i ? (
                 <StarFilled
                   key={i}
-                  className="text-gray-600"
+                  className="text-gray-600 cursor-pointer"
                   onMouseEnter={() => setHovered(i + 1)}
                   onClick={() => setFieldValue("rating", i + 1)}
                 />
               ) : (
                 <StarOutlined
                   key={i}
-                  className="text-gray-600"
+                  className="text-gray-600 cursor-pointer"
                   onMouseEnter={() => setHovered(i + 1)}
                   onClick={() => setFieldValue("rating", i + 1)}
                 />
