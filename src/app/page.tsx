@@ -31,7 +31,7 @@ const Home = () => {
           <div className="main-hero">
             <div className="hero-left">
               <h1 className="text-4xl md:text-5xl font-bold leading-snug md:leading-[60px] text-white">
-                Craft Compelling Proposals in {""}
+                Craft Compelling Proposals in
                 <span className="text-orange-light">
                   Minutes with Quick Proposal
                 </span>
@@ -226,6 +226,23 @@ const Home = () => {
 
         {/* Testimonial Section */}
       </div>
+      {/* More Projects */}
+      <div className="wrapper py-24 text-center gap-y-2">
+        <h3 className="text-3xl text-center font-bold">
+          Ready to Start Winning{" "}
+          <span className="text-orange-light">More Projects </span>
+        </h3>
+        <p className="text-sm">
+          Sign up for Quick Proposal today and start creating winning proposals
+          in minutes
+        </p>
+        <Button
+          className="mx-auto col-span-3 max-w-60"
+          type="submit"
+          label="Get Started For Free"
+        />
+      </div>
+      {/* More Projects end */}
       <Footer />
     </div>
   );
