@@ -40,7 +40,10 @@ export async function POST(request: NextRequest) {
 
     const { data: data2 } = await supabase
       .from("Users")
-      .update({ credits: user.credits - 1 })
+      .update({
+        credits: user.credits - 1,
+        history: [{ ...response.data, title: payload.title }, ...user?.history],
+      })
       .eq("email", decoded.email)
       .eq("id", decoded.id)
       .select();
