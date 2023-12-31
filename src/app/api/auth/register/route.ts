@@ -46,7 +46,8 @@ export async function POST(request: NextRequest) {
       ])
       .select();
 
-    if (error) throw { msg: "Something is wrong. Please try again later" };
+    if (error)
+      throw { msg: "Something is wrong. Please try again later", error };
 
     await registerMail({ id: data[0].id, email, name, token });
 

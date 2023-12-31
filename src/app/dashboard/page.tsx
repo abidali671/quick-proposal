@@ -19,7 +19,7 @@ export default function Home() {
     skills: "",
   });
 
-  const { accessToken } = useStore();
+  const { accessToken, updateUser } = useStore();
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
@@ -30,13 +30,17 @@ export default function Home() {
           Authorization: "Bearer " + accessToken,
         },
       });
-      const contentList = response.data.choices.map(
+
+      const contentList = response.data.result.choices.map(
         (value: any) => value.message.content
       );
 
+      updateUser(response.data.user);
       setData(contentList);
       setOriginalData(contentList);
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.response?.data?.error)
+        toast(error?.response?.data?.error, { type: "error" });
       console.log("client error: ", error);
     } finally {
       setLoading(false);

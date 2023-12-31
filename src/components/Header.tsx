@@ -18,47 +18,54 @@ const Header = () => {
 
   const DashboardNavList = () => {
     return (
-      <li className="relative">
-        <div
-          className="h-8 w-8 md:w-10 md:h-10 rounded-full bg-gray-200 cursor-pointer"
-          onClick={() => setMenu(!menu)}
-        >
-          <p className="text-gray-700 text-center uppercase font-bold text-lg leading-8 md:leading-10">
-            {user?.name[0]}
+      <>
+        <li>
+          <p className="text-white">
+            Available Credits: <b>{user?.credits}</b>
           </p>
-        </div>
+        </li>
+        <li className="relative">
+          <div
+            className="h-8 w-8 md:w-10 md:h-10 rounded-full bg-gray-200 cursor-pointer"
+            onClick={() => setMenu(!menu)}
+          >
+            <p className="text-gray-700 text-center uppercase font-bold text-lg leading-8 md:leading-10">
+              {user?.name[0]}
+            </p>
+          </div>
 
-        <div
-          className={
-            "bg-gray-100 shadow rounded-md absolute top-full right-0 mt-1 w-64 overflow-hidden transition-all duration-1000 " +
-            (menu ? "max-h-[300px] " : "max-h-0 ")
-          }
-        >
-          <ul>
-            <li className="flex items-center gap-2 border-b border-gray-200 p-2">
-              <div className="h-8 w-8 md:w-10 md:h-10 rounded-full bg-gray-300 cursor-pointer">
-                <p className="text-gray-700 text-center uppercase font-bold text-lg leading-8 md:leading-10">
-                  {user?.name[0]}
-                </p>
-              </div>
-              <div>
-                <p className="font-bold text-sm capitalize">{user?.name}</p>
-                <p className="text-xs text-gray-500">{user?.email}</p>
-              </div>
-            </li>
-            <li
-              className="px-2 py-3 flex items-center gap-2"
-              onClick={() => {
-                updateAccessToken("");
-                router.push("/");
-              }}
-            >
-              <Logout className="text-gray-500" />
-              <p className="text-sm font-medium text-gray-500">Logout</p>
-            </li>
-          </ul>
-        </div>
-      </li>
+          <div
+            className={
+              "bg-gray-100 shadow rounded-md absolute top-full right-0 mt-1 w-64 overflow-hidden transition-all duration-1000 " +
+              (menu ? "max-h-[300px] " : "max-h-0 ")
+            }
+          >
+            <ul>
+              <li className="flex items-center gap-2 border-b border-gray-200 p-2">
+                <div className="h-8 w-8 md:w-10 md:h-10 rounded-full bg-gray-300 cursor-pointer">
+                  <p className="text-gray-700 text-center uppercase font-bold text-lg leading-8 md:leading-10">
+                    {user?.name[0]}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-bold text-sm capitalize">{user?.name}</p>
+                  <p className="text-xs text-gray-500">{user?.email}</p>
+                </div>
+              </li>
+              <li
+                className="px-2 py-3 flex items-center gap-2"
+                onClick={() => {
+                  updateAccessToken("");
+                  router.push("/");
+                }}
+              >
+                <Logout className="text-gray-500" />
+                <p className="text-sm font-medium text-gray-500">Logout</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </>
     );
   };
 
