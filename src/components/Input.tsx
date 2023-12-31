@@ -5,7 +5,7 @@ import React, {
 } from "react";
 
 interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
 }
 
