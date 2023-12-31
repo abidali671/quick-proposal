@@ -10,7 +10,7 @@ import {
 } from "react";
 
 interface User {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 interface IContext {

@@ -10,16 +10,15 @@ import { toast } from "react-toastify";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<string[]>([]);
-  const [originalData, setOriginalData] = useState<string[]>([]);
-  const [selectedData] = useState(0);
+  const [data, setData] = useState<null | string>(null);
+  const [originalData, setOriginalData] = useState<null | string>(null);
   const [values, setValues] = useState({
     title: "",
     description: "",
     skills: "",
   });
 
-  const { accessToken, updateUser } = useStore();
+  const { accessToken, updateUser, user } = useStore();
 
   const handleSend: FormEventHandler<HTMLFormElement> = async (event) => {
     try {
@@ -30,14 +29,9 @@ export default function Home() {
           Authorization: "Bearer " + accessToken,
         },
       });
-
-      const contentList = response.data.result.choices.map(
-        (value: any) => value.message.content
-      );
-
       updateUser(response.data.user);
-      setData(contentList);
-      setOriginalData(contentList);
+      setData(response.data.result?.choices?.[0]?.message?.content);
+      setOriginalData(response.data.result?.choices?.[0]?.message?.content);
     } catch (error: any) {
       if (error?.response?.data?.error)
         toast(error?.response?.data?.error, { type: "error" });
@@ -52,24 +46,16 @@ export default function Home() {
   };
 
   const handleCopyContent = () => {
-    navigator.clipboard.writeText(data[selectedData]);
+    navigator.clipboard.writeText(data ?? "");
     toast("Text copied to the clipboard", { type: "success" });
   };
 
   const handleResetContent = () => {
-    setData((prev) =>
-      prev.map((val, index) =>
-        index === selectedData ? originalData[selectedData] : val
-      )
-    );
+    setData(originalData);
   };
 
   const handleChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setData((prev) =>
-      prev.map((val, index) =>
-        index === selectedData ? event.target.value : val
-      )
-    );
+    setData(event.target.value);
   };
 
   return (
@@ -124,14 +110,18 @@ export default function Home() {
               <History className="text-gray-500 h-4 w-4" />
               <h6 className="text-xs font-semibold text-gray-400">HISTORY</h6>
             </div>
-            {["Web Developer", "Mern Stack"].map((d, i) => (
+            {user?.history?.map((d: any, i: number) => (
               <div
                 key={i}
                 className="grid grid-cols-[auto_1fr] gap-2 items-center bg-gray-50 hover:bg-gray-100 cursor-pointer px-5"
+                onClick={() => {
+                  setData(d?.choices?.[0]?.message?.content);
+                  setOriginalData(d?.choices?.[0]?.message?.content);
+                }}
               >
                 <ChatBox className="text-gray-500 w-5 h-5 min-w-5" />
-                <p className="text-sm leading-10 font-medium text-gray-600 truncate">
-                  {d}
+                <p className="text-sm leading-10 font-medium text-gray-600 truncate capitalize">
+                  {d?.title}
                 </p>
               </div>
             ))}
@@ -140,9 +130,9 @@ export default function Home() {
         <div className="h-full bg-white w-full flex flex-col gap-2 p-5 relative">
           <div className="h-full w-full border border-gray-200 p-5 relative">
             <div className="flex h-10 items-center justify-end absolute right-5 -top-5 bg-white rounded-md">
-              {data.length > 0 && (
+              {data && (
                 <div className="flex items-center gap-2">
-                  {data[selectedData] !== originalData[selectedData] && (
+                  {data !== originalData && (
                     <Button
                       size="sm"
                       variant="secondary"
@@ -161,9 +151,9 @@ export default function Home() {
               )}
             </div>
             <textarea
-              disabled={!data.length}
+              disabled={!data}
               className="h-full w-full pt-1 resize-none outline-none"
-              value={data[selectedData]}
+              value={data ?? ""}
               onChange={handleChangeContent}
             />
           </div>
