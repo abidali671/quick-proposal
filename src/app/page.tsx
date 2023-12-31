@@ -11,8 +11,12 @@ import React from "react";
 import BenefitsImage from "@/assets/benefits_vector.svg";
 import FeaturesImage from "@/assets/features_vector.svg";
 import FeaturesSectionImage from "@/assets/feature_section_vector.svg";
+import { useStore } from "@/lib/Context";
 
 const Home = () => {
+  const { user } = useStore();
+
+  const getStartedLink = user ? "/dashboard" : "/register";
   return (
     <div>
       <div id="home" className="bg-gray-dark relative">
@@ -38,7 +42,7 @@ const Home = () => {
               </p>
 
               <div className="pt-5 w-32">
-                <Link href="/register">
+                <Link href={getStartedLink}>
                   <Button label="Get Started" />
                 </Link>
               </div>
@@ -154,7 +158,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/register">
+                <Link href={getStartedLink}>
                   <Button label="Get Started" />
                 </Link>
               </div>
@@ -175,7 +179,7 @@ const Home = () => {
                 <li>Email Support</li>
               </ul>
               <div className="w-32">
-                <Link href="/register">
+                <Link href={getStartedLink}>
                   <Button label="Get Started" />
                 </Link>
               </div>
