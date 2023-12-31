@@ -17,7 +17,7 @@ interface IContext {
   user: null | User;
   accessToken: string;
   updateUser: Dispatch<SetStateAction<User | null>>;
-  updateAccessToken: Dispatch<SetStateAction<string>>;
+  updateAccessToken: (token: string) => void;
 }
 
 const Context = createContext<IContext>({
@@ -36,7 +36,12 @@ const getAccessToken = () => {
 
 export const ContextProvider = ({ children }: any) => {
   const [user, updateUser] = useState<null | User>(null);
-  const [accessToken, updateAccessToken] = useState<string>(getAccessToken());
+  const [accessToken, setAccessToken] = useState<string>(getAccessToken());
+
+  const updateAccessToken = (token: string) => {
+    setAccessToken(token);
+    localStorage.setItem("accessToken", token);
+  };
 
   return (
     <Context.Provider
