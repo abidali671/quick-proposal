@@ -1,16 +1,20 @@
 "use client";
 
 import React, { ChangeEvent } from "react";
-import { useFormik } from "formik";
-import Input from "@/components/Input";
-import "./style.css";
-import Button from "@/components/Button";
-import { clientAPI } from "@/utils/api";
 import Link from "next/link";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 import AuthLayout from "@/components/AuthLayout";
+
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
+import { clientAPI } from "@/utils/api";
+
+import "./style.css";
 
 function Login() {
+  const router = useRouter();
   const { values, setFieldValue, handleSubmit, isSubmitting, errors } =
     useFormik({
       initialValues: {
@@ -24,6 +28,7 @@ function Login() {
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("user", response.data.user);
           localStorage.setItem("isLoggedIn", "true");
+          router.push("/app");
         } catch (error: any) {
           if (error.response.data.non_field_error)
             toast(error.response.data.non_field_error, { type: "error" });
