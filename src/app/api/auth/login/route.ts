@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
 
     delete user.password;
     delete user.token;
+    delete user.history;
 
     const accessToken = generateToken(user);
 
