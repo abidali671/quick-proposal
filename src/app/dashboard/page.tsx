@@ -15,7 +15,7 @@ export default function Home() {
   const [values, setValues] = useState({
     title: "",
     description: "",
-    skills: "",
+    emojis: false,
   });
 
   const { accessToken, updateUser, user, showHistory, toggleHistory } =
@@ -42,7 +42,10 @@ export default function Home() {
     }
   };
 
-  const handleUpdateValue = (key: string, value: string) => {
+  const handleUpdateValue = <T extends string | boolean>(
+    key: string,
+    value: T
+  ) => {
     setValues((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -63,10 +66,7 @@ export default function Home() {
     <ProtectedRoute>
       <div className="w-full grid md:grid-cols-[400px_1fr] max-md:grid-rows-[auto_1fr]">
         <div className="md:grid md:grid-rows-[auto_auto_1fr] border-r border-gray-200 shadow-sm">
-          <form
-            onSubmit={handleSend}
-            className="bg-white grid gap-4 max-md:grid-cols-2 p-5"
-          >
+          <form onSubmit={handleSend} className="bg-white grid gap-4 p-5">
             <Input
               required
               label="Job Title"
@@ -75,28 +75,25 @@ export default function Home() {
                 handleUpdateValue("title", e.target.value)
               }
             />
-
-            <Input
-              label="Skills"
-              placeholder="Skills (optional)"
-              value={values.skills}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                handleUpdateValue("skills", e.target.value)
-              }
-            />
-
             <Input
               rows={5}
               multiline
               required
-              className="max-md:h-[100px] max-md:col-span-2"
+              className="max-md:h-[100px]"
               label="Job Description"
               value={values.description}
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 handleUpdateValue("description", e.target.value)
               }
             />
-
+            <label className="flex items-center gap-2 text-sm font-medium">
+              <input
+                type="checkbox"
+                checked={values.emojis}
+                onChange={(e) => handleUpdateValue("emojis", e.target.checked)}
+              />
+              <p>Include Emojis</p>
+            </label>
             <Button
               className="max-md:col-span-2"
               variant="secondary"

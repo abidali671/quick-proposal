@@ -24,11 +24,23 @@ export async function POST(request: NextRequest) {
       throw { error: "You are out of credits" };
     }
 
-    const prompt = `Compose a response applying for a job opportunity with the given skills, title and description. The response should start with a 2 lines of hook that target the given description point. and the response should contains inquire about more details regarding the job and add previous work URL list. The response should not Highlight my skill and ability. The words should be less than 100, simple, easy and like human written, includes some emojis and the words tone should be confident.
+    const prompt = `
+    generate a job proposal with the title and description.
+    The words tone should be confident, simple, easy and like human written.
+    the response should target this points
+    "
+    Restate their core problem.
+    Provide a Solution.
+    Tell them you can help solve their problem, and that you can start right away.
+    Describe the process you’ll guide them through and inquire about more details.
+    URL list of previous work.
+    "
+
+    ${payload.emojis ? "include some":"don't"} emojis.
     title: "${payload.title}"
     description: "${payload.description}"
 
-    Note: The data should be formatted for html textarea
+    Note: The data should be formatted for textarea value
     `;
 
     const response = await API.openAI.post("/chat/completions", {
