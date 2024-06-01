@@ -12,6 +12,7 @@ import BenefitsImage from "@/assets/benefits_vector.svg";
 import FeaturesImage from "@/assets/features_vector.svg";
 import FeaturesSectionImage from "@/assets/feature_section_vector.svg";
 import { useStore } from "@/lib/Context";
+import UploadBtn from "./upload-btn";
 
 const Home = () => {
   const { user } = useStore();
@@ -40,6 +41,7 @@ const Home = () => {
                 Quick Proposal is an AI-powered writing tool that helps you
                 create winning Upwork and freelance job proposals in no time.
               </p>
+              <UploadBtn />
 
               <div className="pt-5 w-32">
                 <Link href={getStartedLink}>
