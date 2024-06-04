@@ -2,23 +2,15 @@ import { ErrorHandler, supabase } from "@/utils";
 import authenticate from "@/utils/Authenticate";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
+import ConnectDB from "@/lib/ConnectDB";
+import UserModel from "@/model/User";
 
 export async function GET() {
   try {
+    await ConnectDB();
     const authorization = headers().get("authorization");
-
     const decoded = authenticate(authorization ?? "") as Record<string, string>;
-
-    let { data } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("email", decoded.email)
-      .eq("id", decoded.id);
-
-    const user = data?.[0];
-
-    delete user.password;
-    delete user.token;
+    const user = await UserModel.findById(decoded._id);
 
     return NextResponse.json(user);
   } catch (error) {

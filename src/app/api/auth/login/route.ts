@@ -2,17 +2,15 @@ import bcrypt from "bcrypt";
 
 import { NextRequest, NextResponse } from "next/server";
 import { ErrorHandler, generateToken, registerMail, supabase } from "@/utils";
+import ConnectDB from "@/lib/ConnectDB";
+import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
   try {
+    await ConnectDB();
     const { email, password } = await request.json();
 
-    let { data: existingUserByEmail } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("email", email);
-
-    const user = existingUserByEmail?.[0];
+    const user = await UserModel.findOne({ email });
 
     const isCorrectPassword =
       user && (await bcrypt.compare(password, user.password));
@@ -34,17 +32,16 @@ export async function POST(request: NextRequest) {
       }
     } else
       throw {
-        non_field_error: "Invalid username or password",
+        non_field_error: "Invalid email or password",
       };
 
-    delete user.password;
-    delete user.token;
-    delete user.history;
+    const { _id } = user;
 
-    const accessToken = generateToken(user);
+    const accessToken = generateToken({ _id });
 
     return NextResponse.json({ accessToken, user }, { status: 201 });
   } catch (error) {
+    console.log("error", error);
     return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
 }
