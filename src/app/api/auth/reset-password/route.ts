@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import optGenerator from "otp-generator";
 import bcrypt from "bcrypt";
 
-import { ErrorHandler, registerMail, supabase } from "@/utils";
+import { ErrorHandler, registerMail } from "@/utils";
 import { ResetSchema } from "@/schema/auth";
+import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,12 +15,7 @@ export async function POST(request: NextRequest) {
       { abortEarly: false, strict: true }
     );
 
-    let { data: existingUserByEmail } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("id", id);
-
-    const user = existingUserByEmail?.[0];
+    const user = await UserModel.findById(id);
 
     if (user) {
       const { verified } = user;
@@ -52,11 +48,10 @@ export async function POST(request: NextRequest) {
     });
     const bcryptPassword = await bcrypt.hash(password, 10);
 
-    await supabase
-      .from("Users")
-      .update({ password: bcryptPassword, token: newToken })
-      .eq("id", id)
-      .select();
+    await UserModel.findByIdAndUpdate(id, {
+      password: bcryptPassword,
+      token: newToken,
+    });
 
     return NextResponse.json(
       { msg: "Your password has been successfully reset" },

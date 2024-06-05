@@ -63,7 +63,7 @@ function Login() {
             }
             type="password"
           />
-          <Link className="text-gray-400 text-sm" href="/register">
+          <Link className="text-gray-400 text-sm" href="/forgot-password">
             Forgot password?
           </Link>
         </div>
