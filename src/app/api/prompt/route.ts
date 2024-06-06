@@ -1,7 +1,10 @@
-import { API, ErrorHandler, supabase } from "@/utils";
+import { API, ErrorHandler } from "@/utils";
 import authenticate from "@/utils/Authenticate";
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
+import UserModel from "@/model/User";
+import HistoryModel from "@/model/History";
+import { IUser } from "@/types/User";
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,16 +12,7 @@ export async function POST(request: NextRequest) {
     const authorization = headers().get("authorization");
     const decoded = authenticate(authorization ?? "") as Record<string, string>;
 
-    let { data } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("email", decoded.email)
-      .eq("id", decoded.id);
-
-    const user = data?.[0];
-
-    delete user.password;
-    delete user.token;
+    const user = await UserModel.findById(decoded._id);
 
     if (user.credits < 1) {
       throw { error: "You are out of credits" };
@@ -36,7 +30,7 @@ export async function POST(request: NextRequest) {
     URL list of previous work.
     "
 
-    ${payload.emojis ? "include some":"don't"} emojis.
+    ${payload.emojis ? "include some" : "don't"} emojis.
     title: "${payload.title}"
     description: "${payload.description}"
 
@@ -49,22 +43,32 @@ export async function POST(request: NextRequest) {
       n: 1,
     });
 
-    const { data: data2 } = await supabase
-      .from("Users")
-      .update({
+    const proposalResult = {
+      user_id: user._id,
+      title: payload.title,
+      content: response.data?.choices?.[0]?.message?.content,
+    };
+
+    const proposal = new HistoryModel(proposalResult);
+
+    proposal.save();
+
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      user._id,
+      {
         credits: user.credits - 1,
-        history: [{ ...response.data, title: payload.title }, ...user?.history],
-      })
-      .eq("email", decoded.email)
-      .eq("id", decoded.id)
-      .select();
+        history: [proposal, ...user?.history],
+      },
+      { new: true }
+    )
+      .populate("history")
+      .lean();
 
-    const updatedUser = data2?.[0];
+    let newUser = { ...updatedUser } as IUser;
+    delete newUser.token;
+    delete newUser.password;
 
-    delete updatedUser.password;
-    delete updatedUser.token;
-
-    return NextResponse.json({ user: updatedUser, result: response.data });
+    return NextResponse.json({ user: newUser, result: proposalResult });
   } catch (error) {
     return NextResponse.json(ErrorHandler(error), { status: 500 });
   }

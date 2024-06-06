@@ -1,4 +1,4 @@
-import { ErrorHandler, supabase } from "@/utils";
+import { ErrorHandler } from "@/utils";
 import authenticate from "@/utils/Authenticate";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
@@ -10,7 +10,7 @@ export async function GET() {
     await ConnectDB();
     const authorization = headers().get("authorization");
     const decoded = authenticate(authorization ?? "") as Record<string, string>;
-    const user = await UserModel.findById(decoded._id);
+    const user = await UserModel.findById(decoded._id).populate("history");
 
     return NextResponse.json(user);
   } catch (error) {

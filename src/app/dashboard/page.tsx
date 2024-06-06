@@ -31,8 +31,8 @@ export default function Home() {
         },
       });
       updateUser(response.data.user);
-      setData(response.data.result?.choices?.[0]?.message?.content);
-      setOriginalData(response.data.result?.choices?.[0]?.message?.content);
+      setData(response.data.result?.content);
+      setOriginalData(response.data.result?.content);
     } catch (error: any) {
       if (error?.response?.data?.error)
         toast(error?.response?.data?.error, { type: "error" });
@@ -125,8 +125,8 @@ export default function Home() {
                 key={i}
                 className="grid grid-cols-[auto_1fr] gap-2 items-center bg-gray-50 hover:bg-gray-100 cursor-pointer px-5"
                 onClick={() => {
-                  setData(d?.choices?.[0]?.message?.content);
-                  setOriginalData(d?.choices?.[0]?.message?.content);
+                  setData(d?.content);
+                  setOriginalData(d?.content);
                   toggleHistory();
                 }}
               >

@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 import { NextRequest, NextResponse } from "next/server";
-import { ErrorHandler, generateToken, registerMail, supabase } from "@/utils";
+import { ErrorHandler, generateToken, registerMail } from "@/utils";
 import ConnectDB from "@/lib/ConnectDB";
 import UserModel from "@/model/User";
 
