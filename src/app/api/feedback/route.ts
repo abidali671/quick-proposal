@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { ErrorHandler, supabase } from "@/utils";
+import { ErrorHandler } from "@/utils";
 import { FeedbackSchema } from "@/schema/feedback";
+import FeedbackModel from "@/model/Feedback";
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,28 +13,16 @@ export async function POST(request: NextRequest) {
       { abortEarly: false, strict: true }
     );
 
-    let { data: existingFeedback } = await supabase
-      .from("Feedback")
-      .select("*")
-      .eq("email", email);
-
-    const feedback = existingFeedback?.[0];
+    const feedback = await FeedbackModel.findOne({ email });
 
     if (feedback) {
-      const { error } = await supabase
-        .from("Feedback")
-        .update({ email, name, message, rating })
-        .eq("id", feedback.id)
-        .select();
-      if (error)
-        throw { msg: "Something is wrong. Please try again later", error };
+      feedback.name = name;
+      feedback.message = message;
+      feedback.rating = rating;
+      await feedback.save();
     } else {
-      const { error } = await supabase
-        .from("Feedback")
-        .insert([{ email, name, message, rating }])
-        .select();
-      if (error)
-        throw { msg: "Something is wrong. Please try again later", error };
+      const newFeedback = new FeedbackModel({ email, name, message, rating });
+      await newFeedback.save();
     }
 
     return NextResponse.json(
