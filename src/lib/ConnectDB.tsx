@@ -7,9 +7,9 @@ const ConnectDB = async () => {
       return true;
     }
 
-    await mongoose.connect(
-      "mongodb+srv://abidali671:5CkksU0y1rpNOc96@cluster0.4cmzhxm.mongodb.net/quick_proposal_dashboard?retryWrites=true&w=majority&appName=Cluster0"
-    );
+    const uri = process.env.MONGO_DB_URI;
+
+    await mongoose.connect(uri ?? "");
     console.log("DB connected successfully");
   } catch (error) {
     console.log("DB connection failed: ", error);
