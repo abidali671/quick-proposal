@@ -20,9 +20,11 @@ export default async function RootLayout({ children }: any) {
   return (
     <ContextProvider>
       <html lang="en">
-        <body className={`${inter.className} min-h-screen flex flex-col`}>
+        <body
+          className={`${inter.className} min-h-screen grid grid-rows-[auto_1fr]`}
+        >
           <Header />
-          <div className="flex-1 grid">{children}</div>
+          <div className="grid relative">{children}</div>
           <ToastContainer
             autoClose={5000}
             position="top-center"
