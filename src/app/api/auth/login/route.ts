@@ -42,6 +42,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ accessToken, user }, { status: 201 });
   } catch (error) {
     console.log("error", error);
-    return NextResponse.json(ErrorHandler(error), { status: 500 });
+    return NextResponse.json(
+      { ...ErrorHandler(error), new_error: error },
+      { status: 500 }
+    );
   }
 }
