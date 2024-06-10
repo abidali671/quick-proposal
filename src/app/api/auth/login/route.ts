@@ -6,8 +6,11 @@ import ConnectDB from "@/lib/ConnectDB";
 import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
+  let dbConnected = false;
+
   try {
     await ConnectDB();
+    dbConnected = true;
     const { email, password } = await request.json();
 
     const user = await UserModel.findOne({ email });
@@ -43,7 +46,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.log("error", error);
     return NextResponse.json(
-      { ...ErrorHandler(error), new_error: error },
+      { ...ErrorHandler(error), new_error: error, dbConnected },
       { status: 500 }
     );
   }
