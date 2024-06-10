@@ -6,17 +6,13 @@ import ConnectDB from "@/lib/ConnectDB";
 import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
-  let dbConnected = false;
-  let dbUser = null;
-
+  let db = null;
   try {
-    await ConnectDB();
-    dbConnected = true;
+    db = await ConnectDB();
 
     const { email, password } = await request.json();
 
     const user = await UserModel.findOne({ email });
-    dbUser = user;
 
     const isCorrectPassword =
       user && (await bcrypt.compare(password, user.password));
@@ -45,12 +41,8 @@ export async function POST(request: NextRequest) {
 
     const accessToken = generateToken({ _id });
 
-    return NextResponse.json({ accessToken, user }, { status: 201 });
+    return NextResponse.json({ accessToken, user, db }, { status: 201 });
   } catch (error) {
-    console.log("error", error);
-    return NextResponse.json(
-      { ...ErrorHandler(error), new_error: error, dbConnected, dbUser },
-      { status: 500 }
-    );
+    return NextResponse.json({ ...ErrorHandler(error) }, { status: 500 });
   }
 }
