@@ -7,13 +7,16 @@ import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
   let dbConnected = false;
+  let dbUser = null;
 
   try {
     await ConnectDB();
     dbConnected = true;
+
     const { email, password } = await request.json();
 
     const user = await UserModel.findOne({ email });
+    dbUser = user.lean();
 
     const isCorrectPassword =
       user && (await bcrypt.compare(password, user.password));
@@ -46,7 +49,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.log("error", error);
     return NextResponse.json(
-      { ...ErrorHandler(error), new_error: error, dbConnected },
+      { ...ErrorHandler(error), new_error: error, dbConnected, dbUser },
       { status: 500 }
     );
   }
