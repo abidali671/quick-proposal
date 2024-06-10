@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const { email, password } = await request.json();
 
     const user = await UserModel.findOne({ email });
-    dbUser = user.lean();
+    dbUser = user;
 
     const isCorrectPassword =
       user && (await bcrypt.compare(password, user.password));
