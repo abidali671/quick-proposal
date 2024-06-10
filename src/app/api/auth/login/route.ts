@@ -6,9 +6,8 @@ import ConnectDB from "@/lib/ConnectDB";
 import UserModel from "@/model/User";
 
 export async function POST(request: NextRequest) {
-  let db = null;
   try {
-    db = await ConnectDB();
+    await ConnectDB();
 
     const { email, password } = await request.json();
 
@@ -41,8 +40,8 @@ export async function POST(request: NextRequest) {
 
     const accessToken = generateToken({ _id });
 
-    return NextResponse.json({ accessToken, user, db }, { status: 201 });
+    return NextResponse.json({ accessToken }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ ...ErrorHandler(error) }, { status: 500 });
+    return NextResponse.json(ErrorHandler(error), { status: 500 });
   }
 }

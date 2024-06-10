@@ -15,8 +15,8 @@ const ConnectDB = async () => {
 
     await mongoose.connect(uri);
     return message;
-  } catch (error: any) {
-    throw { uri, ...error };
+  } catch (error) {
+    throw error;
   }
 };
 
